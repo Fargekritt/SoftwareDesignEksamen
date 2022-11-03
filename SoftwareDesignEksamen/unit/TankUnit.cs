@@ -4,7 +4,7 @@ class TankUnit : AbstractUnit
 {
     public TankUnit()
     {
-        Health = 20;
+        MaxHealth = 20;
         Damage = 2;
         Healing = 0;
         Armor = 3;

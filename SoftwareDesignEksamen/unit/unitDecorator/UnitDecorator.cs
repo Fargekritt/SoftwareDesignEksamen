@@ -8,7 +8,7 @@ public abstract class UnitDecorator:AbstractUnit
     {
         _original = original;
         
-        Health = _original.Health;
+        MaxHealth = _original.MaxHealth;
         Damage = _original.Damage;
         Healing = _original.Healing;
         Armor = _original.Armor;
