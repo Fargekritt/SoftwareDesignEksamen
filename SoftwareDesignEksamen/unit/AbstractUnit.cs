@@ -35,4 +35,9 @@ public abstract class AbstractUnit
     {
         Health += (damageDealt / 100) * LifeSteal;
     }
+
+    public void Heal(int heal)
+    {
+        Health += heal;
+    }
 }
