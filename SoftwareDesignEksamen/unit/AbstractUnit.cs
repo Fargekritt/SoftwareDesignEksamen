@@ -7,6 +7,8 @@ public abstract class AbstractUnit
     public int Healing { get; set; }
     public int Armor { get; set; }
     public int Reach { get; set; }
+    
+    // LifeSteal Defined in percentage.
     public int LifeSteal { get; set; }
     public int Cost { get; set; }
 
@@ -25,6 +27,12 @@ public abstract class AbstractUnit
 
         return damage;
     }
+
     // todo:
     //  damage === damage - armor FOR NOW!!!
+    
+    public void DamageDealt(int damageDealt)
+    {
+        Health += (damageDealt / 100) * LifeSteal;
+    }
 }
