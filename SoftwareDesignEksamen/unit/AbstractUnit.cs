@@ -43,6 +43,7 @@ public abstract class AbstractUnit
     // todo:
     //  damage === damage - armor FOR NOW!!!
 
+    // What will happen when damage is dealt.
     public void DamageDealt(int damageDealt)
     {
         Heal(damageDealt * (LifeSteal / 100));

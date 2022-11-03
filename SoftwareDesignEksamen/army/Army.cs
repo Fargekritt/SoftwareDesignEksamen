@@ -15,9 +15,20 @@ public class Army
 
     public void AttackedBy(AbstractUnit attacker)
     {
-        var defender = Units[0];
-        var damageDealt = defender.TakeDamage(attacker.Damage);
+        var damageDealt = 0;
+        var damage = attacker.Damage;
+        
+        for (int i = 0; i < attacker.Reach; i++)
+        {
+            if (i > 1)
+            {
+                damage = (damage * 90) / 100;
+            }
+
+            damageDealt += Units[i].TakeDamage(damage);
+        }
         attacker.DamageDealt(damageDealt);
+
     }
 
     public void HealingTurn()
@@ -37,8 +48,8 @@ public class Army
     {
         foreach (var unit in Units)
         {
-            if (unit.IsAlive())  continue;
-            
+            if (unit.IsAlive()) continue;
+
             _combinedHealingPower -= unit.Healing;
             Units.Remove(unit);
         }
