@@ -45,11 +45,18 @@ public abstract class AbstractUnit
 
     public void DamageDealt(int damageDealt)
     {
-        Health += (damageDealt / 100) * LifeSteal;
+        Heal(damageDealt * (LifeSteal / 100));
     }
 
     public void Heal(int heal)
     {
-        Health += heal;
+        if (Health + heal < MaxHealth)
+        {
+            Health += heal;
+        }
+        else
+        {
+            Health = MaxHealth;
+        }
     }
 }
