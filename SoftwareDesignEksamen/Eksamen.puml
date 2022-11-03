@@ -1,0 +1,53 @@
+@startuml
+'https://plantuml.com/class-diagram
+class UI
+class GameManager
+class GameBoard
+
+class Army {
+- Units: List<AbstractUnit>
++ AttackedBy(AbstractUnit)
++ HealingTurn()
+}
+class Player{
+- Name: String
+- Gold: int
+- Army: Army
++ getNextUnit()
++ AttackedBy(AbstractUnit)
+}
+
+abstract class AbstractUnit{
+- Health: int
+- Damage: int
+- Healing: int
+- Armor: int
+- Reach: int
+- LifeSteal: int
++ isAlive(): bool
++ TakeDamage(int Damage): void
+}
+class DPSUnit
+class TankUnit
+class HealerUnit
+abstract class UnitDecorator{
+- Original: AbstractUnit
+}
+class SwordDecorator
+class ShieldDecorator
+
+UI -- GameManager
+GameManager o- Player
+GameManager o-- GameBoard
+Player - Army : has a Army
+Army - AbstractUnit : has many units
+AbstractUnit <-- DPSUnit
+AbstractUnit <-- TankUnit
+AbstractUnit <-- HealerUnit
+AbstractUnit <-- UnitDecorator
+UnitDecorator <-- ShieldDecorator
+UnitDecorator <-- SwordDecorator
+
+
+
+@enduml
