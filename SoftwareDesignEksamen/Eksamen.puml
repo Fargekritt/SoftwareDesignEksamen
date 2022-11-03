@@ -36,9 +36,13 @@ class GameBoard{
 
 
 class Army {
+- combinedHealingPower
 - Units: List<AbstractUnit>
-+ AttackedBy(AbstractUnit)
-+ HealingTurn()
++ AddUnit(AbstractUnit): void
++ AttackedBy(AbstractUnit): void
++ HealingTurn(): void
++ Update(): void
+- ClearDead(): void
 }
 class Player{
 - Name: String
@@ -49,14 +53,17 @@ class Player{
 }
 
 abstract class AbstractUnit{
-- Health: int
-- Damage: int
-- Healing: int
-- Armor: int
-- Reach: int
-- LifeSteal: int
++ Cost: int
++ Health: int
++ MaxHealth: int
++ Damage: int
++ Healing: int
++ Armor: int
++ Reach: int
++ Heal(int): void
++ LifeSteal: int
 + isAlive(): bool
-+ TakeDamage(int Damage): void
++ TakeDamage(int Damage): int
 }
 class DPSUnit
 class TankUnit
