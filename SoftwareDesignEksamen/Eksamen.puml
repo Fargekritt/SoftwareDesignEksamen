@@ -45,9 +45,9 @@ class Army {
 - ClearDead(): void
 }
 class Player{
-- Name: String
-- Gold: int
-- Army: Army
++ Name: String
++ Gold: int
++ Army: Army
 + getNextUnit()
 + AttackedBy(AbstractUnit)
 }
