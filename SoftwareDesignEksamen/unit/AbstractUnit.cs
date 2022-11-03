@@ -2,12 +2,24 @@
 
 public abstract class AbstractUnit
 {
+    private int _maxHealth;
     public int Health { get; set; }
+
+    public int MaxHealth
+    {
+        get => _maxHealth;
+        set
+        {
+            Health = value;
+            _maxHealth = value;
+        }
+    }
+
     public int Damage { get; set; }
     public int Healing { get; set; }
     public int Armor { get; set; }
     public int Reach { get; set; }
-    
+
     // LifeSteal Defined in percentage.
     public int LifeSteal { get; set; }
     public int Cost { get; set; }
@@ -30,9 +42,21 @@ public abstract class AbstractUnit
 
     // todo:
     //  damage === damage - armor FOR NOW!!!
-    
+
     public void DamageDealt(int damageDealt)
     {
-        Health += (damageDealt / 100) * LifeSteal;
+        Heal(damageDealt * (LifeSteal / 100));
+    }
+
+    public void Heal(int heal)
+    {
+        if (Health + heal < MaxHealth)
+        {
+            Health += heal;
+        }
+        else
+        {
+            Health = MaxHealth;
+        }
     }
 }

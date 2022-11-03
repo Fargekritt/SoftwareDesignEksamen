@@ -4,10 +4,12 @@ namespace SoftwareDesignEksamen.army;
 
 public class Army
 {
+    private int _combinedHealingPower;
     public List<AbstractUnit> Units { get; set; }
 
     public void AddUnit(AbstractUnit unit)
     {
+        _combinedHealingPower += unit.Healing;
         Units.Add(unit);
     }
 
@@ -20,7 +22,10 @@ public class Army
 
     public void HealingTurn()
     {
-        
+        foreach (var unit in Units)
+        {
+            unit.Heal(_combinedHealingPower);
+        }
     }
 
     public void Update()
@@ -34,6 +39,7 @@ public class Army
         {
             if (!unit.IsAlive())
             {
+                _combinedHealingPower -= unit.Healing;
                 Units.Remove(unit);
             }
         }
