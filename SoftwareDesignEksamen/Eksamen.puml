@@ -1,8 +1,39 @@
 @startuml
 'https://plantuml.com/class-diagram
-class UI
-class GameManager
-class GameBoard
+class UI{
++ FontSize
++ Color
++ clear()
++ PrintMessage(): void
++ PrintQuestion(): void
++ PrintGameBoard(): void
++ PrintStartMenu(): void
++ PrintMultipleChoice(Title: String, List<String>): int
++ ReadString(): string
++ ReadInt(): int
++ ReadBoolean(): bool
+}
+class GameManager{
+- Player1: Player
+- Player2: Player
+- Board: GameBoard 
++ StartGame(): void
+- PlayerInit(): void
+- ArmyInit(): void
+- GameBoardInit(): void
+- UpdateGameBoard(): void
+- Attack(Player1, Player2): void
+- Turn(): void
+- EndGame(): void
+- SaveHighscore(): void
+- Battlelog(): void
+}
+class GameBoard{
++ Height: int
++ Width: int
+- Board: List<List<char>> // Board[width][height]
+}
+
 
 class Army {
 - Units: List<AbstractUnit>
