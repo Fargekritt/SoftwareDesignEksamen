@@ -37,11 +37,10 @@ public class Army
     {
         foreach (var unit in Units)
         {
-            if (!unit.IsAlive())
-            {
-                _combinedHealingPower -= unit.Healing;
-                Units.Remove(unit);
-            }
+            if (unit.IsAlive())  continue;
+            
+            _combinedHealingPower -= unit.Healing;
+            Units.Remove(unit);
         }
     }
 }
