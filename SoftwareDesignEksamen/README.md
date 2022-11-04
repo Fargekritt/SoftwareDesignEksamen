@@ -20,3 +20,7 @@
 * Decorator pattern 
  * Used in unit directory.  
 
+* Region
+* Comment format with file
+
+* String {getset}="";
