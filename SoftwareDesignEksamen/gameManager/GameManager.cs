@@ -16,8 +16,8 @@ public class GameManager
     public void StartGame()
     {
         PlayerInit();
-        _ui.Message(_player1.Name + _player1.Gold);
-        _ui.Message(_player2.Name + _player2.Gold);
+        _ui.Message("Playe one: "+_player1.Name + ", Gold: "+_player1.Gold);
+        _ui.Message("Playe two: "+_player2.Name + ", Gold: "+_player2.Gold);
     }
 
     private void PlayerInit()
