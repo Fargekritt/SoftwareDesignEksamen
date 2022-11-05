@@ -5,11 +5,10 @@ namespace SoftwareDesignEksamen.player;
 
 public class Player
 {
-    private Army _army;
+    private Army _army = new Army();
 
-    public Player(Army army, string name, int gold)
+    public Player(string name, int gold)
     {
-        _army = army;
         Name = name;
         Gold = gold;
     }
