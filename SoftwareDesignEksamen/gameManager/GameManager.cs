@@ -8,7 +8,7 @@ public class GameManager
     private Player _player1;
     private Player _player2;
 
-    private Ui _ui = new Ui();
+    private readonly Ui _ui = new Ui();
     //private GameBoard _gameBoard;
 
     #region Methods
@@ -16,13 +16,20 @@ public class GameManager
     public void StartGame()
     {
         PlayerInit();
-        _ui.Message("Playe one: "+_player1.Name + ", Gold: "+_player1.Gold);
-        _ui.Message("Playe two: "+_player2.Name + ", Gold: "+_player2.Gold);
+        _ui.Message("Player one: "+_player1.Name + ", Gold: "+_player1.Gold);
+        _ui.Message("Player two: "+_player2.Name + ", Gold: "+_player2.Gold);
+        var questions = new List<string>
+        {
+            "Pizza",
+            "Burger",
+            "Cake"
+        };
+        _ui.PrintMultipleChoice(questions);
     }
 
     private void PlayerInit()
     {
-        string name = _ui.AskQuestion("Enter player one name");
+        var name = _ui.AskQuestion("Enter player one name");
         _player1 = new Player(name, 100);
         name = _ui.AskQuestion("Enter player two name");
         _player2 = new Player(name, 100);

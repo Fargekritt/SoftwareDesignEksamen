@@ -15,24 +15,55 @@ public class Ui
     {
     }
 
-    public int PrintultipleChoice()
+    public int PrintMultipleChoice(List<string> questions)
     {
+        for (var i = 0; i < questions.Count; i++)
+        {
+            var question = questions[i];
+            Message($"{i+1}. {question}");
+        }
+
+        while (true)
+        {
+            var readInt = ReadInt();
+            if (readInt > 1 && readInt < questions.Count+1)
+            {
+                return readInt;
+            }
+            Message("Please enter a valid option");
+        }
+
         return -1;
     }
 
     public int ReadInt()
     {
-        return -1;
+        var readString = ReadString();
+        int.TryParse(readString, out var n);
+        return n;
     }
 
     public string ReadString()
     {
-        return Console.ReadLine();
+        var readString = Console.ReadLine();
+        return readString ?? "";
     }
 
-    public bool ReadBoolean()
+    public bool ReadBoolean(string question,string yes, string no)
     {
-        return false;
+        while (true)
+        {
+            var answer = AskQuestion(question);
+            if (answer == yes)
+            {
+                return true;
+            }
+            if (answer == no)
+            {
+                return false;
+            }
+            Message("Invalid Input");
+        }
     }
 
     public string AskQuestion(string question)
