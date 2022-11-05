@@ -4,6 +4,7 @@ class HealerUnit : AbstractUnit
 {
     public HealerUnit()
     {
+        Description = "Healer";
         MaxHealth = 5;
         Damage = 1;
         Healing = 5;

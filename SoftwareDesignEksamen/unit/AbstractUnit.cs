@@ -3,6 +3,8 @@
 public abstract class AbstractUnit
 {
     private int _maxHealth;
+
+    public string Description { get; set; } = "";
     public int Health { get; set; }
 
     public int MaxHealth
@@ -23,6 +25,7 @@ public abstract class AbstractUnit
     // LifeSteal Defined in percentage.
     public int LifeSteal { get; set; }
     public int Cost { get; set; }
+    public string Name { get; set; }
 
 
     // Returns true if health is not 0.

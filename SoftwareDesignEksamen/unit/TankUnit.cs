@@ -4,6 +4,7 @@ class TankUnit : AbstractUnit
 {
     public TankUnit()
     {
+        Description = "Tank";
         MaxHealth = 20;
         Damage = 2;
         Healing = 0;

@@ -4,8 +4,8 @@ namespace SoftwareDesignEksamen.army;
 
 public class Army
 {
-    private int _combinedHealingPower;
-    public List<AbstractUnit> Units { get; set; }
+    private int _combinedHealingPower = 0;
+    public List<AbstractUnit> Units { get; set; } = new List<AbstractUnit>();
 
     public void AddUnit(AbstractUnit unit)
     {

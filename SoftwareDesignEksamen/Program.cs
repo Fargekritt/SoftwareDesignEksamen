@@ -10,5 +10,6 @@ internal static class Program
         GameManager gameManager = new();
         gameManager.StartGame();
         
+        
     }
 }

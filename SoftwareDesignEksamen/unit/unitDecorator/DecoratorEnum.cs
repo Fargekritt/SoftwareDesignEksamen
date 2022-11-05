@@ -2,6 +2,6 @@
 
 public enum DecoratorEnum
 {
-    SWORD = 0,
-    SHIELD = 1,
+    SWORD = 1,
+    SHIELD = 2,
 }
