@@ -5,8 +5,8 @@ namespace SoftwareDesignEksamen.unit;
 
 public abstract class AbstractUnit
 {
-    public AbstractWeapon Weapon { get; set; }
-    public AbstractShield Shield { get; set; }
+    public AbstractWeapon Weapon { get; set; } = new NoSword();
+    public AbstractShield Shield { get; set; } = new NoShield();
     
 
     private readonly int _maxHealth;
@@ -29,7 +29,7 @@ public abstract class AbstractUnit
 
     public int Damage
     {
-        get => Weapon.Damage;
+        get => Weapon.Damage + _damage;
         protected init => _damage = value;
     }
 
@@ -55,7 +55,7 @@ public abstract class AbstractUnit
 
     public int Cost
     {
-        get => _cost + Weapon.Cost;
+        get => _cost + Weapon.Cost + Shield.Cost;
         init => _cost = value;
     }
 

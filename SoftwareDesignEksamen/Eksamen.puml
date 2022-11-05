@@ -105,6 +105,7 @@ GameManager o- Player
 GameManager o-- GameBoard
 Player - Army : has a Army
 Army - AbstractUnit : has many units
+AbstractWeapon --o AbstractUnit
 AbstractUnit <-- DPSUnit
 AbstractUnit <-- TankUnit
 AbstractUnit <-- HealerUnit

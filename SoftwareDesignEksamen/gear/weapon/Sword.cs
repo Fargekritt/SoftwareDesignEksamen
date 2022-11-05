@@ -8,7 +8,5 @@ public class Sword : AbstractWeapon
     {
         Cost = 2;
         Damage = 5;
-        Reach = 0;
-        LifeSteal = 0;
     }
 }
