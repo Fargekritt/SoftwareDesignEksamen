@@ -75,18 +75,18 @@ public class GameManager
             {
                 _ui.Message("You dont have enough gold for that unit!");
             }
-
+            
+            // Show army
             _ui.Message("Your army currently contains");
             if (player.ListArmy().Count == 0)
             {
                 _ui.Message("[No units]");
             }
-
             foreach (var armyUnit in player.ListArmy())
             {
                 _ui.Message($"{armyUnit.Name}({armyUnit.Description})");
             }
-            
+            // GoldSack empty
             if (player.Gold == 0)
             {
                 _ui.Message("Your out of gold!");
