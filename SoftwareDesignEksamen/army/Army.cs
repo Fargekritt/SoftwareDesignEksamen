@@ -1,11 +1,21 @@
-﻿using SoftwareDesignEksamen.unit;
+﻿using SoftwareDesignEksamen.battleLog;
+using SoftwareDesignEksamen.unit;
 
 namespace SoftwareDesignEksamen.army;
 
 public class Army
 {
+    #region Fields
+
+    private BattleLogger _logger = BattleLogger.CreateInstance();
     private int _combinedHealingPower = 0;
+
+    #endregion
+
+    #region Properties
     public List<AbstractUnit> Units { get; set; } = new List<AbstractUnit>();
+    
+    #endregion
 
     public void AddUnit(AbstractUnit unit)
     {
@@ -24,7 +34,7 @@ public class Army
             {
                 damage = (damage * 90) / 100;
             }
-
+            _logger.Info($"{attacker} hit {Units[i]} for {damage} damage.");
             damageDealt += Units[i].TakeDamage(damage);
         }
         attacker.DamageDealt(damageDealt);
@@ -33,6 +43,7 @@ public class Army
 
     public void HealingTurn()
     {
+        
         foreach (var unit in Units)
         {
             unit.Heal(_combinedHealingPower);

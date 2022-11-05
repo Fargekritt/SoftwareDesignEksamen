@@ -1,4 +1,5 @@
 ﻿using SoftwareDesignEksamen.army;
+using SoftwareDesignEksamen.battleLog;
 using SoftwareDesignEksamen.unit;
 
 namespace SoftwareDesignEksamen.player;
@@ -6,6 +7,7 @@ namespace SoftwareDesignEksamen.player;
 public class Player
 {
     private Army _army = new Army();
+    private BattleLogger _logger = BattleLogger.CreateInstance();
 
     public Player(string name, int gold)
     {
@@ -26,6 +28,7 @@ public class Player
     public void AttackedBy(AbstractUnit attacker)
     {
         _army.AttackedBy(attacker);
+        
     }
 
     public void AddUnit(AbstractUnit unit)
