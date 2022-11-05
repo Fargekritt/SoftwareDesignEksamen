@@ -32,8 +32,7 @@ public class Ui
             }
             Message("Please enter a valid option");
         }
-
-        return -1;
+        
     }
 
     public int ReadInt()
