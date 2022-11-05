@@ -53,12 +53,12 @@ public class Ui
     {
         while (true)
         {
-            var answer = AskQuestion(question);
-            if (answer == yes)
+            var answer = AskQuestion(question).ToLower();
+            if (answer == yes.ToLower())
             {
                 return true;
             }
-            if (answer == no)
+            if (answer == no.ToLower())
             {
                 return false;
             }
