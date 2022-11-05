@@ -32,12 +32,17 @@
 # Rapport
 
 ## DP
-* Decorator pattern 
+### Decorator pattern 
  * Used in unit directory.  
-
+### Singleton
+ * 
+### Factory
+ * 
+## Comment structure
 * Region
 * Comment format with file
 
+* -Fixing string null values-
 * String {getset}="";
 
 

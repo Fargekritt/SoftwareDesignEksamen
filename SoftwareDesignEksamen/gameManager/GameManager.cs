@@ -5,11 +5,18 @@ namespace SoftwareDesignEksamen.gameManager;
 
 public class GameManager
 {
+
+    #region Fields
+
     private Player _player1;
+
     private Player _player2;
 
     private readonly Ui _ui = new Ui();
+
     //private GameBoard _gameBoard;
+
+    #endregion
 
     #region Methods
 
