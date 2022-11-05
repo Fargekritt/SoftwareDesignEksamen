@@ -1,11 +1,12 @@
 using SoftwareDesignEksamen.player;
 using SoftwareDesignEksamen.ui;
+using SoftwareDesignEksamen.unit;
+using SoftwareDesignEksamen.unit.unitFactory;
 
 namespace SoftwareDesignEksamen.gameManager;
 
 public class GameManager
 {
-
     #region Fields
 
     private Player _player1;
@@ -23,15 +24,9 @@ public class GameManager
     public void StartGame()
     {
         PlayerInit();
-        _ui.Message("Player one: "+_player1.Name + ", Gold: "+_player1.Gold);
-        _ui.Message("Player two: "+_player2.Name + ", Gold: "+_player2.Gold);
-        var questions = new List<string>
-        {
-            "Pizza",
-            "Burger",
-            "Cake"
-        };
-        _ui.PrintMultipleChoice(questions);
+        _ui.Message("Player one -> Name: " + _player1.Name + ", Gold: " + _player1.Gold);
+        _ui.Message("Player two -> Name: " + _player2.Name + ", Gold: " + _player2.Gold + "\n");
+        ArmyInit();
     }
 
     private void PlayerInit()
@@ -44,7 +39,64 @@ public class GameManager
 
     private void ArmyInit()
     {
+        BuildArmy(_player1);
+        BuildArmy(_player2);
     }
+
+    private void BuildArmy(Player player)
+    {
+        List<string> baseUnits = new List<string>
+        { // Change the cost to not beeing hardcoded, maybe import from json ??
+            "DPS (10)",
+            "Tank (10)",
+            "Healer (10)"
+        };
+
+        _ui.Message(player.Name + ", choose the unit you want to add to your army");
+        var unitFactory = new UnitFactory();
+        bool run = true;
+        while (run)
+        {
+            //Choose unit
+            _ui.Message($"Your current gold is {player.Gold}");
+            var playerUnitChoice = _ui.PrintMultipleChoice(baseUnits);
+
+            // Pay, Create and  add unit. 
+            var unit = unitFactory.CreateUnit((UnitEnum)playerUnitChoice);
+            if (player.Gold >= unit.Cost)
+            {
+                player.Gold -= unit.Cost;
+                unit.Name = _ui.AskQuestion("Enter the name you want on the unit:");
+                player.AddUnit(unit);
+                _ui.Clear();
+                _ui.Message($"{unit.Description}-Unit added to your army");
+            }
+            else
+            {
+                _ui.Message("You dont have enough gold for that unit!");
+            }
+
+            _ui.Message("Your army currently contains");
+            if (player.ListArmy().Count == 0)
+            {
+                _ui.Message("[No units]");
+            }
+
+            foreach (var armyUnit in player.ListArmy())
+            {
+                _ui.Message($"{armyUnit.Name}({armyUnit.Description})");
+            }
+            
+            if (player.Gold == 0)
+            {
+                _ui.Message("Your out of gold!");
+                break;
+            }
+
+            run = _ui.ReadBoolean("\nAdd more units", "yes", "no");
+        }
+    }
+
 
     private void GameBoardInit()
     {

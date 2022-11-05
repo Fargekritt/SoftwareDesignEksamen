@@ -2,7 +2,7 @@
 
 public enum UnitEnum
 {
-    DPS = 0,
-    TANK = 1,
-    HEALER = 2
+    DPS = 1,
+    TANK = 2,
+    HEALER = 3
 }

@@ -27,4 +27,14 @@ public class Player
     {
         _army.AttackedBy(attacker);
     }
+
+    public void AddUnit(AbstractUnit unit)
+    {
+        _army.AddUnit(unit);
+    }
+
+    public List<AbstractUnit> ListArmy()
+    {
+        return _army.Units;
+    }
 }
