@@ -19,8 +19,8 @@ public class UnitFactory
     {
         switch (upgrade)
         {
-            case DecoratorEnum.SWORD: return new SwordDecorator(unit);
-            case DecoratorEnum.SHIELD: return new ShieldDecorator(unit);
+            // case DecoratorEnum.SWORD: return new SwordDecorator(unit);
+            // case DecoratorEnum.SHIELD: return new ShieldDecorator(unit);
             default: return unit;
         }
     }

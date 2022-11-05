@@ -1,6 +1,6 @@
 ﻿namespace SoftwareDesignEksamen.unit;
 
-class DpsUnit : AbstractUnit
+public class DpsUnit : AbstractUnit
 {
     public DpsUnit()
     {
