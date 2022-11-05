@@ -78,5 +78,10 @@ public class Ui
         Console.WriteLine(message);
     }
 
+    public void Clear()
+    {
+        Console.Clear();
+    }
+
     #endregion
 }
