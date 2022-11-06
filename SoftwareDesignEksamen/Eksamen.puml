@@ -84,12 +84,20 @@ abstract class AbstractWeapon{
 
 abstract class AbstractWeaponDecorator
 class ReachDecorator
-class DamageDecorator
+class SharpDecorator
 class LifeStealDecorator
+
+abstract class AbstractShield
+class KiteShield
+
+abstract class AbstractShieldDecorator
 
 class Sword
 class Mace
 class spear
+
+AbstractShield <-- AbstractShieldDecorator
+AbstractShield <-- KiteShield
 
 AbstractWeapon <-- AbstractWeaponDecorator
 AbstractWeapon <-- Sword
@@ -97,7 +105,7 @@ AbstractWeapon <-- Mace
 AbstractWeapon <-- spear
 
 AbstractWeaponDecorator <-- ReachDecorator
-AbstractWeaponDecorator <-- DamageDecorator
+AbstractWeaponDecorator <-- SharpDecorator
 AbstractWeaponDecorator <-- LifeStealDecorator
 
 UI -- GameManager
@@ -106,6 +114,7 @@ GameManager o-- GameBoard
 Player - Army : has a Army
 Army - AbstractUnit : has many units
 AbstractWeapon --o AbstractUnit
+AbstractShield ---o AbstractUnit
 AbstractUnit <-- DPSUnit
 AbstractUnit <-- TankUnit
 AbstractUnit <-- HealerUnit
