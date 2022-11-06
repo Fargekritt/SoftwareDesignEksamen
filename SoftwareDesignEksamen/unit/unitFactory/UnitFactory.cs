@@ -1,27 +1,89 @@
-﻿using SoftwareDesignEksamen.unit.unitDecorator;
+﻿using SoftwareDesignEksamen.gear.shield;
+using SoftwareDesignEksamen.gear.weapon.decorator;
+using SoftwareDesignEksamen.unit.unitDecorator;
+using SoftwareDesignEksamen.weapon;
 
 namespace SoftwareDesignEksamen.unit.unitFactory;
 
 public class UnitFactory
 {
-    public AbstractUnit? CreateUnit(UnitEnum unit)
+    public AbstractUnit CreateUnit(UnitEnum unit)
     {
         switch (unit)
         {
-            case UnitEnum.DPS: return new DpsUnit();
-            case UnitEnum.TANK: return new TankUnit();
-            case UnitEnum.HEALER: return new HealerUnit();
-            default: return null;
+            case UnitEnum.Dps:
+            {
+                var dps = new DpsDecorator(new HumanUnit())
+                {
+                    Weapon = CreateWeapon(WeaponEnum.SharpSword)
+                };
+                return dps;
+            }
+            case UnitEnum.Tank:
+            {
+                var tank = new TankDecorator(new OrcUnit())
+                {
+                    Weapon = CreateWeapon(WeaponEnum.ShortSword),
+                    Shield = CreateShield(ShieldEnum.Kite)
+                };
+                return tank;
+            }
+            case UnitEnum.Healer:
+            {
+                var healer = new HealerDecorator(new ElfUnit());
+                return healer;
+            }
+            case UnitEnum.RaidBoss:
+            {
+                var raidBoss = new DpsDecorator(new OrcUnit())
+                {
+                    Weapon = CreateWeapon(WeaponEnum.VampircSword),
+                    Shield = CreateShield(ShieldEnum.Kite)
+                };
+                return raidBoss;
+            }
+            default: return new HumanUnit();
         }
     }
 
-    public AbstractUnit? UpgradeUnit(AbstractUnit unit, DecoratorEnum upgrade)
+
+    public AbstractWeapon CreateWeapon(WeaponEnum weapon)
     {
-        switch (upgrade)
+        switch (weapon)
         {
-            // case DecoratorEnum.SWORD: return new SwordDecorator(unit);
-            // case DecoratorEnum.SHIELD: return new ShieldDecorator(unit);
-            default: return unit;
+            case WeaponEnum.LongSword : return new ReachDecorator(new Sword());
+            case WeaponEnum.ShortSword : return new Sword();
+            case WeaponEnum.SharpSword : return new SharpDecorator(new Sword());
+            case WeaponEnum.Spear : return new Spear();
+            case WeaponEnum.Pike : return new ReachDecorator(new Spear());
+            case WeaponEnum.VampircSword : return new LifeStealDecorator(new ReachDecorator(new Sword()));
         }
+
+        return new NoSword();
     }
+
+    public AbstractShield CreateShield(ShieldEnum shield)
+    {
+        switch (shield)
+        {
+            case ShieldEnum.Kite: return new KiteShield();
+        }
+
+        return new NoShield();
+    }
+}
+
+public enum ShieldEnum
+{
+    Kite = 1,
+}
+
+public enum WeaponEnum
+{
+    LongSword = 1,
+    ShortSword = 2,
+    Spear = 3,
+    Pike = 4,
+    SharpSword = 5,
+    VampircSword = 6
 }

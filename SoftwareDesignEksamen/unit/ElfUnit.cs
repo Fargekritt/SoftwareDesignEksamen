@@ -1,8 +1,8 @@
 ﻿namespace SoftwareDesignEksamen.unit;
 
-class HealerUnit : AbstractUnit
+class ElfUnit : AbstractUnit
 {
-    public HealerUnit()
+    public ElfUnit()
     {
         MaxHealth = 5;
         Damage = 1;

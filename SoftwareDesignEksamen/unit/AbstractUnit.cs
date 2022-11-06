@@ -1,4 +1,5 @@
-﻿using SoftwareDesignEksamen.gear.shield;
+﻿using SoftwareDesignEksamen.gear.chestPlate;
+using SoftwareDesignEksamen.gear.shield;
 using SoftwareDesignEksamen.weapon;
 
 namespace SoftwareDesignEksamen.unit;
@@ -7,14 +8,16 @@ public abstract class AbstractUnit
 {
     public AbstractWeapon Weapon { get; set; } = new NoSword();
     public AbstractShield Shield { get; set; } = new NoShield();
+
+    public AbstractChestPlate ChestPlate { get; set; } = new NoChestPlate();
     
 
     private readonly int _maxHealth;
     private readonly int _cost;
     private readonly int _lifeSteal;
     private readonly int _damage;
-    private int _reach;
-    private int _armor;
+    private readonly int _reach;
+    private readonly int _armor;
     public int Health { get; set; }
 
     public int MaxHealth
@@ -36,7 +39,7 @@ public abstract class AbstractUnit
     public int Healing { get; protected init; }
     public int Armor
     {
-        get => _armor + Shield.Armor;
+        get => _armor + Shield.Armor + ChestPlate.Armor;
         protected init => _armor = value;
     }
 
@@ -55,7 +58,7 @@ public abstract class AbstractUnit
 
     public int Cost
     {
-        get => _cost + Weapon.Cost + Shield.Cost;
+        get => _cost + Weapon.Cost + Shield.Cost + ChestPlate.Cost;
         init => _cost = value;
     }
 

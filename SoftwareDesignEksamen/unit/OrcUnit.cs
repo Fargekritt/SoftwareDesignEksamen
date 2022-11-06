@@ -1,13 +1,13 @@
 ﻿namespace SoftwareDesignEksamen.unit;
 
-class TankUnit : AbstractUnit
+class OrcUnit : AbstractUnit
 {
-    public TankUnit()
+    public OrcUnit()
     {
         MaxHealth = 20;
         Damage = 2;
         Healing = 0;
-        Armor = 3;
+        Armor = 4;
         Reach = 1;
         LifeSteal = 0;
         Cost = 10;
