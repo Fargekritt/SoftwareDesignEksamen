@@ -54,6 +54,8 @@ class Player{
 
 abstract class AbstractUnit{
 + Weapon: AbstractWeapon
++ Shield: AbstractShield
++ ChestPlate: AbstractChestPlate
 + Cost: int
 + Health: int
 + MaxHealth: int
