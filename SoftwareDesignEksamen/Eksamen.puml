@@ -53,6 +53,9 @@ class Player{
 }
 
 abstract class AbstractUnit{
++ Weapon: AbstractWeapon
++ Shield: AbstractShield
++ ChestPlate: AbstractChestPlate
 + Cost: int
 + Health: int
 + MaxHealth: int
@@ -74,11 +77,46 @@ abstract class UnitDecorator{
 class SwordDecorator
 class ShieldDecorator
 
+abstract class AbstractWeapon{
++ Cost: int
++ Damage: int
++ Reach: int
++ LifeSteal: int
+}
+
+abstract class AbstractWeaponDecorator
+class ReachDecorator
+class SharpDecorator
+class LifeStealDecorator
+
+abstract class AbstractShield
+class KiteShield
+
+abstract class AbstractShieldDecorator
+
+class Sword
+class Mace
+class spear
+
+AbstractShield <-- AbstractShieldDecorator
+AbstractShield <-- KiteShield
+
+AbstractWeapon <-- AbstractWeaponDecorator
+AbstractWeapon <-- Sword
+AbstractWeapon <-- Mace
+AbstractWeapon <-- spear
+
+AbstractWeaponDecorator <-- ReachDecorator
+AbstractWeaponDecorator <-- SharpDecorator
+AbstractWeaponDecorator <-- LifeStealDecorator
+
 UI -- GameManager
 GameManager o- Player
 GameManager o-- GameBoard
 Player - Army : has a Army
 Army - AbstractUnit : has many units
+AbstractWeapon --o AbstractUnit
+AbstractShield ---o AbstractUnit
 AbstractUnit <-- DPSUnit
 AbstractUnit <-- TankUnit
 AbstractUnit <-- HealerUnit

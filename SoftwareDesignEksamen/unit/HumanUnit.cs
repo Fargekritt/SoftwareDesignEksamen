@@ -1,14 +1,14 @@
 ﻿namespace SoftwareDesignEksamen.unit;
 
-class DpsUnit : AbstractUnit
+public class HumanUnit : AbstractUnit
 {
-    public DpsUnit()
+    public HumanUnit()
     {
         Description = "DPS";
         MaxHealth = 10;
         Damage = 5;
         Healing = 0;
-        Armor = 1;
+        Armor = 0;
         Reach = 1;
         LifeSteal = 0;
         Cost = 10;
