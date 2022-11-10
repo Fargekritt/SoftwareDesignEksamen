@@ -7,6 +7,6 @@ public class LifeStealDecorator : AbstractWeaponDecorator
     public LifeStealDecorator(AbstractWeapon original) : base(original)
     {
         LifeSteal = _original.LifeSteal + 30;
-        Cost = _original.Cost + 3;
+        Cost = _original.Cost + 10;
     }
 }

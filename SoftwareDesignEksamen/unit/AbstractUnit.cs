@@ -81,7 +81,7 @@ public abstract class AbstractUnit
         damage -= Armor;
         if (damage < 1)
         {
-            damage = 0;
+            damage = 1;
         }
         _logger.Info($"{Name} has {Armor} armor and is taking {damage} Damage.");
         if (Health - damage < 1)
@@ -104,8 +104,8 @@ public abstract class AbstractUnit
     public void DamageDealt(int damageDealt)
     {
         _logger.Info($"{Name} dealt {damageDealt} amount of damage");
-        var lifeStolen = damageDealt * (LifeSteal / 100);
-        _logger.Info($"{Name} has {LifeSteal / 100}% Lifesteal and is healing for {lifeStolen}");
+        var lifeStolen = (damageDealt * LifeSteal) / 100;
+        _logger.Info($"{Name} has {LifeSteal}% Lifesteal and is healing for {lifeStolen}");
         if (lifeStolen > 0)
         {
             Heal(lifeStolen);

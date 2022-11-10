@@ -4,7 +4,7 @@ class KiteShield : AbstractShield
 {
     public KiteShield()
     {
-        Armor = 2;
-        Cost = 2;
+        Armor = 20;
+        Cost = 10;
     }
 }

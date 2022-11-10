@@ -4,8 +4,8 @@ public class HumanUnit : AbstractUnit
 {
     public HumanUnit()
     {
-        MaxHealth = 10;
-        Damage = 5;
+        MaxHealth = 100;
+        Damage = 50;
         Healing = 0;
         Armor = 0;
         Reach = 1;

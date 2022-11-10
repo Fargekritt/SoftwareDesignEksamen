@@ -9,6 +9,7 @@ public class Army
 
     private BattleLogger _logger = BattleLogger.CreateInstance();
     private int _combinedHealingPower = 0;
+    private int _unitTurn = 0;
 
     #endregion
 
@@ -25,23 +26,45 @@ public class Army
 
     public void AttackedBy(Army attacker)
     {
-        var attackerUnit = attacker.Units[0]; 
+        Attack(attacker.NextUnit());
+    }
 
-            var damageDealt = 0;
-            var damage = attackerUnit.Damage;
+    private AbstractUnit NextUnit()
+    {
 
-            for (int i = 0; i < Math.Min(attackerUnit.Reach, Units.Count); i++)
+        if (_unitTurn > Units.Count - 1)
+        {
+            _unitTurn = Units.Count - 1;
+        }
+        
+        var unit = Units[_unitTurn];
+        _unitTurn++;
+        
+        if (_unitTurn > Units.Count - 1)
+        {
+            _unitTurn = 0;
+        }
+        return unit;
+    }
+
+    private void Attack(AbstractUnit attackerUnit)
+    {
+        var damageDealt = 0;
+        var damage = attackerUnit.Damage;
+
+        for (int i = 0; i < Math.Min(attackerUnit.Reach, Units.Count); i++)
+        {
+            if (i > 1)
             {
-                if (i > 1)
-                {
-                    damage = (damage * 90) / 100;
-                }
-                _logger.Info($"{attackerUnit.Name} hits {Units[i].Name} for {damage} damage.");
-
-                damageDealt += Units[i].TakeDamage(damage);
+                damage = (damage * 90) / 100;
             }
 
-            attackerUnit.DamageDealt(damageDealt);
+            _logger.Info($"{attackerUnit.Name} hits {Units[i].Name} for {damage} damage.");
+
+            damageDealt += Units[i].TakeDamage(damage);
+        }
+
+        attackerUnit.DamageDealt(damageDealt);
     }
 
     public void HealingTurn()

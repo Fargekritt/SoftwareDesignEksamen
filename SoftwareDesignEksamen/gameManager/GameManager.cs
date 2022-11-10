@@ -42,17 +42,20 @@ public class GameManager
             }
 
         }
-        _ui.Message("================== TURN DONE ==================");
-        foreach (var armyUnit in _player2.ListArmy())
-        {
-            _ui.Message($"===={armyUnit.Name}=======");
-            _ui.Message($"{armyUnit}");
-        }
     }
 
     private void EndGame()
     {
         _ui.Message("Game over lmao");
+        var winner = _player1.IsAlive();
+        if (winner)
+        {
+            _ui.Message($"{_player1.Name} Won the game", ConsoleColor.Blue);
+        }
+        else
+        {
+            _ui.Message($"{_player2.Name} Won the game", ConsoleColor.Blue);
+        }
     }
 
     private void PlayerInit()
@@ -73,10 +76,10 @@ public class GameManager
     {
         List<string> baseUnits = new List<string>
         { // Change the cost to not being hardcoded, maybe import from json ??
-            "DPS (10)",
-            "Tank (10)",
+            "DPS (12)",
+            "Tank (22)",
             "Healer (10)",
-            "RaidBoss"
+            "RaidBoss (37)"
         };
         player.BuildArmy(baseUnits);
     }
@@ -102,7 +105,6 @@ public class GameManager
             return;
         }
         
-
         Attack(attacker, defender);
         attacker.HealingTurn();
         defender.Update();

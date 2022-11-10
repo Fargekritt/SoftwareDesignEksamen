@@ -7,6 +7,6 @@ public class Sword : AbstractWeapon
     public Sword()
     {
         Cost = 2;
-        Damage = 5;
+        Damage = 50;
     }
 }

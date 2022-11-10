@@ -4,10 +4,10 @@ class OrcUnit : AbstractUnit
 {
     public OrcUnit()
     {
-        MaxHealth = 20;
-        Damage = 2;
+        MaxHealth = 200;
+        Damage = 20;
         Healing = 0;
-        Armor = 4;
+        Armor = 40;
         Reach = 1;
         LifeSteal = 0;
         Cost = 10;

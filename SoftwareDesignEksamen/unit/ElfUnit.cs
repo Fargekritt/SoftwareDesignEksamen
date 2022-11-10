@@ -4,9 +4,9 @@ class ElfUnit : AbstractUnit
 {
     public ElfUnit()
     {
-        MaxHealth = 5;
-        Damage = 1;
-        Healing = 5;
+        MaxHealth = 50;
+        Damage = 10;
+        Healing = 10;
         Armor = 0;
         Reach = 1;
         LifeSteal = 0;
