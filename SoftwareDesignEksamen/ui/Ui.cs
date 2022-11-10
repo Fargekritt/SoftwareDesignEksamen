@@ -91,6 +91,13 @@ public class Ui
     {
         Console.WriteLine(message);
     }
+    
+    public void Message(string message, ConsoleColor color)
+    {
+        Console.ForegroundColor = color;
+        Console.WriteLine(message);
+        Console.ResetColor();
+    }
 
     public void Clear()
     {

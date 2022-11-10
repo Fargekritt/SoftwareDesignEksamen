@@ -34,11 +34,13 @@ public class Player
 
     public void HealingTurn()
     {
+        _logger.Info($" ====== {Name} HEALING TURN ======", ConsoleColor.Green);
         _army.HealingTurn();
     }
 
     public void AttackedBy(Player attacker)
     {
+        _logger.Info($"{Name} Is getting attacked by {attacker.Name}", ConsoleColor.DarkRed);
         _army.AttackedBy(attacker._army);
     }
 

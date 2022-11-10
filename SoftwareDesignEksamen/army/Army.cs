@@ -26,8 +26,7 @@ public class Army
     public void AttackedBy(Army attacker)
     {
         var attackerUnit = attacker.Units[0]; 
-        // foreach (var attackerUnit in attacker.Units)
-        // {
+
             var damageDealt = 0;
             var damage = attackerUnit.Damage;
 
@@ -37,13 +36,12 @@ public class Army
                 {
                     damage = (damage * 90) / 100;
                 }
-                _logger.Info($"{attackerUnit.Name} hit {Units[i].Name} for {damage} damage.");
+                _logger.Info($"{attackerUnit.Name} hits {Units[i].Name} for {damage} damage.");
 
                 damageDealt += Units[i].TakeDamage(damage);
             }
 
             attackerUnit.DamageDealt(damageDealt);
-        // }
     }
 
     public void HealingTurn()

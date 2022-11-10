@@ -22,5 +22,10 @@ public class BattleLogger
         _ui.Message(log);
     }
     
+    public void Info(string log, ConsoleColor color)
+    {
+        _ui.Message(log, color);
+    }
+    
     
 }

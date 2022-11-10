@@ -4,7 +4,6 @@ class ElfUnit : AbstractUnit
 {
     public ElfUnit()
     {
-        Description = "Healer";
         MaxHealth = 5;
         Damage = 1;
         Healing = 5;

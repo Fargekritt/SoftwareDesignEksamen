@@ -4,7 +4,6 @@ class OrcUnit : AbstractUnit
 {
     public OrcUnit()
     {
-        Description = "Tank";
         MaxHealth = 20;
         Damage = 2;
         Healing = 0;

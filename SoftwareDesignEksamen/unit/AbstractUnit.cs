@@ -83,12 +83,12 @@ public abstract class AbstractUnit
         {
             damage = 0;
         }
-        _logger.Info($"{Name} is taking {damage} Damage, Armor {Armor}");
+        _logger.Info($"{Name} has {Armor} armor and is taking {damage} Damage.");
         if (Health - damage < 1)
         {
             int damageTaken = Health;
             Health = 0;
-            _logger.Info($"{Name} is dead!!!");
+            _logger.Info($"{Name} Has now died </3", ConsoleColor.Magenta);
             return damageTaken;
         }
         Health -= damage;
@@ -103,11 +103,19 @@ public abstract class AbstractUnit
     // What will happen when damage is dealt.
     public void DamageDealt(int damageDealt)
     {
-        Heal(damageDealt * (LifeSteal / 100));
+        _logger.Info($"{Name} dealt {damageDealt} amount of damage");
+        var lifeStolen = damageDealt * (LifeSteal / 100);
+        _logger.Info($"{Name} has {LifeSteal / 100}% Lifesteal and is healing for {lifeStolen}");
+        if (lifeStolen > 0)
+        {
+            Heal(lifeStolen);
+        }
+        
     }
 
     public void Heal(int heal)
     {
+        _logger.Info($"{Name} is healing for {heal}");
         if (Health + heal < MaxHealth)
         {
             Health += heal;
@@ -116,6 +124,7 @@ public abstract class AbstractUnit
         {
             Health = MaxHealth;
         }
+        _logger.Info($"{Name}s current health after healing {Health}");
     }
 
     public override string ToString()

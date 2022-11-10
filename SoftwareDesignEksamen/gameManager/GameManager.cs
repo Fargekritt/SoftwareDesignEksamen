@@ -1,3 +1,4 @@
+using SoftwareDesignEksamen.battleLog;
 using SoftwareDesignEksamen.player;
 using SoftwareDesignEksamen.ui;
 using SoftwareDesignEksamen.unit;
@@ -14,6 +15,7 @@ public class GameManager
     private Player _player2;
 
     private readonly Ui _ui = Ui.CreateInstance();
+    private BattleLogger _logger = BattleLogger.CreateInstance();
 
     //private GameBoard _gameBoard;
 
@@ -27,14 +29,30 @@ public class GameManager
         _ui.Message("Player one -> Name: " + _player1.Name + ", Gold: " + _player1.Gold);
         _ui.Message("Player two -> Name: " + _player2.Name + ", Gold: " + _player2.Gold + "\n");
         ArmyInit();
-        Turn(_player1, _player2);
-        Turn(_player2, _player1);
+        bool run = true;
+        while (run)
+        {
+            Turn(_player1, _player2);
+            Turn(_player2, _player1);
+
+            if (!PlayersAlive())
+            {
+                run = false;
+                EndGame();
+            }
+
+        }
         _ui.Message("================== TURN DONE ==================");
         foreach (var armyUnit in _player2.ListArmy())
         {
             _ui.Message($"===={armyUnit.Name}=======");
             _ui.Message($"{armyUnit}");
         }
+    }
+
+    private void EndGame()
+    {
+        _ui.Message("Game over lmao");
     }
 
     private void PlayerInit()
@@ -79,16 +97,21 @@ public class GameManager
 
     private void Turn(Player attacker, Player defender)
     {
+        if (!attacker.IsAlive() || !defender.IsAlive())
+        {
+            return;
+        }
+        
+
         Attack(attacker, defender);
         attacker.HealingTurn();
         defender.Update();
         attacker.Update();
     }
 
-    private void EndGame()
+    private bool PlayersAlive()
     {
-        
-        
+        return _player1.IsAlive() && _player2.IsAlive();
     }
 
     private void SaveHighScore()
