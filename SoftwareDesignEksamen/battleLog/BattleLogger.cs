@@ -5,7 +5,7 @@ namespace SoftwareDesignEksamen.battleLog;
 public class BattleLogger
 {
     private static BattleLogger? _logger;
-    private Ui _ui = new Ui();
+    private Ui _ui = Ui.CreateInstance();
 
     private BattleLogger()
     {
@@ -15,6 +15,7 @@ public class BattleLogger
     {
         return _logger ??= new BattleLogger();
     }
+    
 
     public void Info(string log)
     {

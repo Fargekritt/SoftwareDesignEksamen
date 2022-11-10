@@ -37,7 +37,7 @@ public class Army
                 {
                     damage = (damage * 90) / 100;
                 }
-                _logger.Info($"{attacker} hit {Units[i]} for {damage} damage.");
+                _logger.Info($"{attackerUnit.Name} hit {Units[i].Name} for {damage} damage.");
 
                 damageDealt += Units[i].TakeDamage(damage);
             }
@@ -63,10 +63,13 @@ public class Army
     {
         for(int i = Units.Count-1; i >= 0; i--)
         {
-            if (Units[i].IsAlive()) continue;
+            if (!Units[i].IsAlive())
+            {
+                _combinedHealingPower -= Units[i].Healing;
+                Units.RemoveAt(i);
+            }
 
-            _combinedHealingPower -= Units[i].Healing;
-            Units.RemoveAt(i);
+
         }
     }
 

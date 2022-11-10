@@ -4,8 +4,20 @@ public class Ui
 {
     public int FontSize { get; set; }
     public ConsoleColor Color { get; set; }
+    private static Ui? _ui;
 
     #region Methods
+
+    private Ui()
+    {
+        
+    }
+
+    public static Ui CreateInstance()
+    {
+        return _ui ??= new Ui();
+    }
+
 
     public void PrintGameBoard()
     {

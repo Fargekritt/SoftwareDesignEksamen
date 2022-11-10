@@ -13,7 +13,7 @@ public class GameManager
 
     private Player _player2;
 
-    private readonly Ui _ui = new Ui();
+    private readonly Ui _ui = Ui.CreateInstance();
 
     //private GameBoard _gameBoard;
 
@@ -28,11 +28,10 @@ public class GameManager
         _ui.Message("Player two -> Name: " + _player2.Name + ", Gold: " + _player2.Gold + "\n");
         ArmyInit();
         Turn(_player1, _player2);
-        _ui.Clear();
-        _ui.Message("TURN DONE ======================================");
+        _ui.Message("================== TURN DONE ==================");
         foreach (var armyUnit in _player2.ListArmy())
         {
-            _ui.Message("===========");
+            _ui.Message($"===={armyUnit.Name}=======");
             _ui.Message($"{armyUnit}");
         }
     }

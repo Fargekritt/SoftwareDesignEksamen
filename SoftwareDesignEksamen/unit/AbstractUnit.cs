@@ -1,4 +1,5 @@
-﻿using SoftwareDesignEksamen.gear.chestPlate;
+﻿using SoftwareDesignEksamen.battleLog;
+using SoftwareDesignEksamen.gear.chestPlate;
 using SoftwareDesignEksamen.gear.shield;
 using SoftwareDesignEksamen.weapon;
 
@@ -17,6 +18,7 @@ public abstract class AbstractUnit
     private readonly int _damage;
     private readonly int _reach;
     private readonly int _armor;
+    private BattleLogger _logger = BattleLogger.CreateInstance();
 
     public string Description { get; set; } = "";
     public int Health { get; set; }
@@ -77,14 +79,16 @@ public abstract class AbstractUnit
     public int TakeDamage(int damage)
     {
         damage -= Armor;
-        if (Health - damage > 1)
+        _logger.Info($"{Name} is taking {damage} Damage, Armor {Armor}");
+        if (Health - damage < 1)
         {
             int damageTaken = Health;
             Health = 0;
+            _logger.Info($"{Name} is dead!!!");
             return damageTaken;
         }
         Health -= damage;
-        
+        _logger.Info($"{Name}s current Health is {Health}");
 
         return damage;
     }
