@@ -13,22 +13,26 @@ public class Army
         Units.Add(unit);
     }
 
-    public void AttackedBy(AbstractUnit attacker)
+    public void AttackedBy(Army attacker)
     {
-        var damageDealt = 0;
-        var damage = attacker.Damage;
-        
-        for (int i = 0; i < attacker.Reach; i++)
-        {
-            if (i > 1)
+        var attackerUnit = attacker.Units[0]; 
+        // foreach (var attackerUnit in attacker.Units)
+        // {
+            var damageDealt = 0;
+            var damage = attackerUnit.Damage;
+
+            for (int i = 0; i < Math.Min(attackerUnit.Reach, Units.Count); i++)
             {
-                damage = (damage * 90) / 100;
+                if (i > 1)
+                {
+                    damage = (damage * 90) / 100;
+                }
+
+                damageDealt += Units[i].TakeDamage(damage);
             }
 
-            damageDealt += Units[i].TakeDamage(damage);
-        }
-        attacker.DamageDealt(damageDealt);
-
+            attackerUnit.DamageDealt(damageDealt);
+        // }
     }
 
     public void HealingTurn()
@@ -46,12 +50,17 @@ public class Army
 
     private void ClearDead()
     {
-        foreach (var unit in Units)
+        for(int i = Units.Count-1; i >= 0; i--)
         {
-            if (unit.IsAlive()) continue;
+            if (Units[i].IsAlive()) continue;
 
-            _combinedHealingPower -= unit.Healing;
-            Units.Remove(unit);
+            _combinedHealingPower -= Units[i].Healing;
+            Units.RemoveAt(i);
         }
+    }
+
+    public bool IsAlive()
+    {
+        return Units.Count > 0;
     }
 }

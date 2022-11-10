@@ -2,8 +2,8 @@
 
 public enum UnitEnum
 {
-    Dps = 0,
-    Tank = 1,
-    Healer = 2,
-    RaidBoss = 3
+    Dps = 1,
+    Tank = 2,
+    Healer = 3,
+    RaidBoss = 4
 }

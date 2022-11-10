@@ -17,6 +17,7 @@ public class UnitFactory
                 {
                     Weapon = CreateWeapon(WeaponEnum.SharpSword)
                 };
+                dps.Description = "Basic DPS unit, Simple cheap";
                 return dps;
             }
             case UnitEnum.Tank:
@@ -26,12 +27,15 @@ public class UnitFactory
                     Weapon = CreateWeapon(WeaponEnum.ShortSword),
                     Shield = CreateShield(ShieldEnum.Kite)
                 };
+                tank.Description = "Basic Tank unit, Simple cheap";
                 return tank;
             }
             case UnitEnum.Healer:
             {
                 var healer = new HealerDecorator(new ElfUnit());
+                healer.Description = "Basic Healer unit, Simple cheap";
                 return healer;
+                
             }
             case UnitEnum.RaidBoss:
             {
@@ -40,6 +44,7 @@ public class UnitFactory
                     Weapon = CreateWeapon(WeaponEnum.VampircSword),
                     Shield = CreateShield(ShieldEnum.Kite)
                 };
+                raidBoss.Description = "High heavy hitting tank, with Lifestealing sword. Can hold the frontline on its own";
                 return raidBoss;
             }
             default: return new HumanUnit();

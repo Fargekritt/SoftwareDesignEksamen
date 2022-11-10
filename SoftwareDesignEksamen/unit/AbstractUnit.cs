@@ -8,7 +8,6 @@ public abstract class AbstractUnit
 {
     public AbstractWeapon Weapon { get; set; } = new NoSword();
     public AbstractShield Shield { get; set; } = new NoShield();
-
     public AbstractChestPlate ChestPlate { get; set; } = new NoChestPlate();
     
 
@@ -64,7 +63,7 @@ public abstract class AbstractUnit
     public int Cost
     {
         get => _cost + Weapon.Cost + Shield.Cost + ChestPlate.Cost;
-        init => _cost = value;
+        protected init => _cost = value;
     }
 
 
@@ -78,7 +77,14 @@ public abstract class AbstractUnit
     public int TakeDamage(int damage)
     {
         damage -= Armor;
+        if (Health - damage > 1)
+        {
+            int damageTaken = Health;
+            Health = 0;
+            return damageTaken;
+        }
         Health -= damage;
+        
 
         return damage;
     }
@@ -102,5 +108,11 @@ public abstract class AbstractUnit
         {
             Health = MaxHealth;
         }
+    }
+
+    public override string ToString()
+    {
+        return $"Name: {Name} \nDescription: {Description} \nHealth: {Health}";
+
     }
 }

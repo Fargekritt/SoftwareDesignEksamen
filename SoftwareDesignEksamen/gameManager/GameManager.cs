@@ -27,6 +27,14 @@ public class GameManager
         _ui.Message("Player one -> Name: " + _player1.Name + ", Gold: " + _player1.Gold);
         _ui.Message("Player two -> Name: " + _player2.Name + ", Gold: " + _player2.Gold + "\n");
         ArmyInit();
+        Turn(_player1, _player2);
+        _ui.Clear();
+        _ui.Message("TURN DONE ======================================");
+        foreach (var armyUnit in _player2.ListArmy())
+        {
+            _ui.Message("===========");
+            _ui.Message($"{armyUnit}");
+        }
     }
 
     private void PlayerInit()
@@ -49,7 +57,8 @@ public class GameManager
         { // Change the cost to not being hardcoded, maybe import from json ??
             "DPS (10)",
             "Tank (10)",
-            "Healer (10)"
+            "Healer (10)",
+            "RaidBoss"
         };
         player.BuildArmy(baseUnits);
     }
@@ -65,14 +74,21 @@ public class GameManager
 
     private void Attack(Player attacker, Player defender)
     {
+        defender.AttackedBy(attacker);
     }
 
-    private void Turn()
+    private void Turn(Player attacker, Player defender)
     {
+        Attack(attacker, defender);
+        attacker.HealingTurn();
+        defender.Update();
+        attacker.Update();
     }
 
     private void EndGame()
     {
+        
+        
     }
 
     private void SaveHighScore()

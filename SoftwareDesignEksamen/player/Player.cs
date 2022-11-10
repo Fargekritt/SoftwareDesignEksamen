@@ -7,14 +7,17 @@ namespace SoftwareDesignEksamen.player;
 
 public class Player
 {
-    private Army _army = new Army();
-    private Ui _ui;
+    private Army _army;
+    private readonly Ui _ui;
+
+
 
     public Player(string name, int gold, Ui ui)
     {
         Name = name;
         Gold = gold;
         _ui = ui;
+        _army = new Army();
     }
 
     public string Name { get; set; }
@@ -27,9 +30,14 @@ public class Player
         return _army.Units[0];
     }
 
-    public void AttackedBy(AbstractUnit attacker)
+    public void HealingTurn()
     {
-        _army.AttackedBy(attacker);
+        _army.HealingTurn();
+    }
+
+    public void AttackedBy(Player attacker)
+    {
+        _army.AttackedBy(attacker._army);
     }
 
     public void AddUnit(AbstractUnit unit)
@@ -77,7 +85,8 @@ public class Player
 
             foreach (var armyUnit in ListArmy())
             {
-                _ui.Message($"{armyUnit.Name}({armyUnit.Description})");
+                _ui.Message("===========");
+                _ui.Message($"{armyUnit}");
             }
 
             // GoldSack empty
@@ -89,5 +98,15 @@ public class Player
 
             run = _ui.ReadBoolean("\nAdd more units", "yes", "no");
         }
+    }
+    
+    public void Update()
+    {
+        _army.Update();
+    }
+
+    public bool IsAlive()
+    {
+        return _army.IsAlive();
     }
 }
