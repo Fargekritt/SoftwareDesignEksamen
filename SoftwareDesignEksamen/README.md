@@ -15,12 +15,12 @@
 # BattleLogger
 ## Layout:
  * "-------------------------------------------------------------------"
- * {Player} attacked {Player} with {Unit}
- *  {Unit} hit {Unit} for x damage
- *  {Unit} had x armor and took x damage after reduction
- *  {Unit} current health is x
- *  {Unit} dealt total of x damage
- *  {Unit} healed x from lifesteal, current health is x 
+ * {Player} attacked {Player} with {Unit} --> GameManager
+ *  {Unit} hit {Unit} for x damage --> Army
+ *  {Unit} had x armor and took x damage after reduction --> Unit
+ *  {Unit} current health is x  --> Unit
+ *  {Unit} dealt total of x damage --> Unit
+ *  {Unit} healed x from lifesteal, current health is x --> Unit
  * "-------------------------------------------------------------------"
 ## Implementation
  * interface BattleLogger

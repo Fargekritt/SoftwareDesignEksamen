@@ -1,18 +1,18 @@
 ﻿using SoftwareDesignEksamen.army;
-using SoftwareDesignEksamen.ui;
+using SoftwareDesignEksamen.battleLog;
 using SoftwareDesignEksamen.unit;
-using SoftwareDesignEksamen.unit.unitFactory;
 
 namespace SoftwareDesignEksamen.player;
 
 public class Player
 {
+    private Army _army = new Army();
+    private BattleLogger _logger = BattleLogger.CreateInstance();
     private Army _army;
     private readonly Ui _ui;
 
 
-
-    public Player(string name, int gold, Ui ui)
+    public Player(string name, int gold)
     {
         Name = name;
         Gold = gold;
