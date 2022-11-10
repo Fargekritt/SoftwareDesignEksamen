@@ -42,7 +42,8 @@
 * Region
 * Comment format with file
 
-* -Fixing string null values-
-* String {getset}="";
-
+### DONT WANT ANY NULL VALUES!
+ * Property {get;set;} = "";
+ * set properties initial values in constructor.
+ 
 

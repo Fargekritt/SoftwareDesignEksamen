@@ -4,6 +4,7 @@ public class HumanUnit : AbstractUnit
 {
     public HumanUnit()
     {
+        Description = "DPS";
         MaxHealth = 10;
         Damage = 5;
         Healing = 0;
