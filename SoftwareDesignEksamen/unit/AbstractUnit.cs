@@ -79,6 +79,10 @@ public abstract class AbstractUnit
     public int TakeDamage(int damage)
     {
         damage -= Armor;
+        if (damage < 1)
+        {
+            damage = 0;
+        }
         _logger.Info($"{Name} is taking {damage} Damage, Armor {Armor}");
         if (Health - damage < 1)
         {

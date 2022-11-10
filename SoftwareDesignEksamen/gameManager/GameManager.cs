@@ -28,6 +28,7 @@ public class GameManager
         _ui.Message("Player two -> Name: " + _player2.Name + ", Gold: " + _player2.Gold + "\n");
         ArmyInit();
         Turn(_player1, _player2);
+        Turn(_player2, _player1);
         _ui.Message("================== TURN DONE ==================");
         foreach (var armyUnit in _player2.ListArmy())
         {
