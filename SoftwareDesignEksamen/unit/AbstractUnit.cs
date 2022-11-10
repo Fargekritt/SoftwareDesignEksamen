@@ -18,7 +18,6 @@ public abstract class AbstractUnit
     private readonly int _damage;
     private readonly int _reach;
     private readonly int _armor;
-    private int _maxHealth;
 
     public string Description { get; set; } = "";
     public int Health { get; set; }
@@ -26,7 +25,7 @@ public abstract class AbstractUnit
     public int MaxHealth
     {
         get => _maxHealth;
-        set
+        protected init
         {
             Health = value;
             _maxHealth = value;
@@ -53,9 +52,9 @@ public abstract class AbstractUnit
     }
 
     // LifeSteal Defined in percentage.
-    public int LifeSteal { get; set; }
-    public int Cost { get; set; }
-    public string Name { get; set; }
+
+
+    public string Name { get; set; } = "";
     public int LifeSteal
     {
         get => Weapon.LifeSteal + _lifeSteal;
