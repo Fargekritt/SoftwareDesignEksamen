@@ -28,6 +28,7 @@ public class GameManager
 
     public void StartGame()
     {
+        
         _database.CreateDbAndTable();
         _database.InsertUser("Amund");
         PlayerInit();

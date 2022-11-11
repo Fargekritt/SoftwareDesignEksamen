@@ -10,10 +10,15 @@ public class Db
         connection.Open();
 
          SqliteCommand command = connection.CreateCommand();
+         
          command.CommandText = @"
-             CREATE TABLE user (
+             CREATE TABLE IF NOT EXISTS leader_board (
                id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-               name TEXT NOT NULL 
+               username TEXT NOT NULL,
+               total_score INTEGER DEFAULT 0,
+               highest_score INTEGER DEFAULT 0,
+               games_played INTEGER DEFAULT 0,
+               games_won INTEGER DEFAULT 0
              );          
          ";
          command.ExecuteNonQuery();
