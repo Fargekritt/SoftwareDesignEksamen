@@ -12,6 +12,14 @@
     * 5 = 7 
 * Base cost for stats is 1 gold.
 
+## Score System
+* BaseScore = 100
+* PlayerOneScore = BaseScore + (PlayerOne.gold - PlayerTwo.gold)
+* PlayerTwoScore = BaseScore + (PlayerTwo.gold - PlayerOne.gold)
+* If a player use less gold than his opponent on starting army, he plays with an disadvantage and get awarded with higher score if he wins. 
+* The more units a player kills the more gold he gets and get awarded with higher score depending on how many units enemy kills.
+
+
 # BattleLogger
 ## Layout:
  * "-------------------------------------------------------------------"

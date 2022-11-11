@@ -9,14 +9,14 @@ public class Db
         using SqliteConnection connection = new("Data Source = exampleSqlite.db");
         connection.Open();
 
-        // SqliteCommand command = connection.CreateCommand();
-        // command.CommandText = @"
-        //     CREATE TABLE user (
-        //       id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-        //       name TEXT NOT NULL 
-        //     );          
-        // ";
-        // command.ExecuteNonQuery();
+         SqliteCommand command = connection.CreateCommand();
+         command.CommandText = @"
+             CREATE TABLE user (
+               id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+               name TEXT NOT NULL 
+             );          
+         ";
+         command.ExecuteNonQuery();
     }
     
     public int InsertUser(string name)
