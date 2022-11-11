@@ -14,7 +14,7 @@ public class Db
         command.CommandText = @"
              CREATE TABLE IF NOT EXISTS leader_board (
                id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-               username TEXT NOT NULL,
+               username TEXT UNIQUE NOT NULL,
                total_score INTEGER DEFAULT 0,
                highest_score INTEGER DEFAULT 0,
                games_played INTEGER DEFAULT 0,
@@ -87,8 +87,8 @@ public class Db
 
         SqliteCommand command = connection.CreateCommand();
         command.CommandText = @"
-            INSERT INTO leader_board (username, total_score, highest_score, games_won)
-            VALUES ($username,$score,$score,$gamesWon);
+            INSERT INTO leader_board (username, total_score, highest_score, games_won,games_played)
+            VALUES ($username,$score,$score,$gamesWon,1);
         ";
         command.Parameters.AddWithValue("$username", username);
         command.Parameters.AddWithValue("$score", score);
@@ -102,33 +102,5 @@ public class Db
         }
 
         command.ExecuteNonQuery();
-    }
-
-
-    public int InsertUser(string name)
-    {
-        int generatedId = -1;
-
-        using SqliteConnection connection = new("Data Source = exampleSqlite.db");
-        connection.Open();
-        SqliteCommand command = connection.CreateCommand();
-        command.CommandText = @"
-				INSERT INTO user (name)
-				VALUES ($name);
-			";
-        command.Parameters.AddWithValue("$name", name);
-        command.ExecuteNonQuery();
-        command.CommandText = @"
-				SELECT seq
-				FROM sqlite_sequence
-				WHERE name = 'user';
-			";
-        using SqliteDataReader reader = command.ExecuteReader();
-        if (reader.Read())
-        {
-            generatedId = reader.GetInt32(0);
-        }
-
-        return generatedId;
     }
 }

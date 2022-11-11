@@ -55,3 +55,7 @@
  * set properties initial values in constructor.
  
 
+# Database
+* ToLowerCase in username ? 
+* GetAll method from scoreBoard.
+* 
