@@ -1,4 +1,5 @@
 using SoftwareDesignEksamen.battleLog;
+using SoftwareDesignEksamen.database;
 using SoftwareDesignEksamen.player;
 using SoftwareDesignEksamen.ui;
 using SoftwareDesignEksamen.unit;
@@ -14,6 +15,8 @@ public class GameManager
 
     private Player _player2;
 
+    private Db _database = new Db();
+
     private readonly Ui _ui = Ui.CreateInstance();
     private BattleLogger _logger = BattleLogger.CreateInstance();
 
@@ -25,6 +28,8 @@ public class GameManager
 
     public void StartGame()
     {
+        _database.CreateDbAndTable();
+        _database.InsertUser("Amund");
         PlayerInit();
         _ui.Message("Player one -> Name: " + _player1.Name + ", Gold: " + _player1.Gold);
         _ui.Message("Player two -> Name: " + _player2.Name + ", Gold: " + _player2.Gold + "\n");
