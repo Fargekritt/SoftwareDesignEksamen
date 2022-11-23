@@ -22,24 +22,41 @@ public class Ui
 
     public void PrintLeaderBoard(List<HighScoreDto> leaderBoard)
     {
-        
-        Message("                              Leader Board!",ConsoleColor.Green);
-        Message("+-=-=-=-=-=+=-=-=-=-=-=-=+=-=-=-=-=-=+=-=-=-=-=-=-=+=-=-=-=-=-=-=-=-+");
-        Message("|   Username   | Total score | Highscore | Games played | Games won |");
-
+        Message("                              Leader Board!", ConsoleColor.DarkBlue);
+        Message("+-=-=-=-=-=+=-=-=-=-=-=-=+=-=-=-=-=-=+=-=-=-=-=-=-=+=-=-=-=-=-=-=-=-+", ConsoleColor.DarkBlue);
+        MessageSameLine("|",ConsoleColor.DarkBlue);
+        MessageSameLine("   Username   | Total score | Highscore | Games played | Games won ");
+        Message("|",ConsoleColor.DarkBlue);
         foreach (var highScore in leaderBoard)
         {
             string username = highScore.Username.PadRight(14).Substring(0, 14);
+            string totalScore = highScore.TotalScore.ToString().PadLeft(13).Substring(0, 13);
+            string highestScore = highScore.HighestScore.ToString().PadLeft(11).Substring(0, 11);
+            string gamesPlayed = highScore.GamesPlayed.ToString().PadLeft(14).Substring(0, 14);
+            string gamesWon = highScore.GamesWon.ToString().PadLeft(11).Substring(0, 11);
             Message("+--------------+-------------+-----------+--------------+-----------+");
-            Message(
+            MessageSameLine("|",ConsoleColor.DarkBlue);
+            MessageSameLine(username);
+            MessageSameLine("|");
+            MessageSameLine(totalScore);
+            MessageSameLine("|");
+            MessageSameLine(highestScore);
+            MessageSameLine("|");
+            MessageSameLine(gamesPlayed);
+            MessageSameLine("|");
+            MessageSameLine(gamesWon);
+            Message("|",ConsoleColor.DarkBlue);
+            
+            /*Message(
                 "|" + username +
-                "|" + highScore.TotalScore.ToString().PadLeft(13).Substring(0,13) +
-                "|" + highScore.HighestScore.ToString().PadLeft(11).Substring(0,11) +
-                "|" + highScore.GamesPlayed.ToString().PadLeft(14).Substring(0,14) +
-                "|" + highScore.GamesWon.ToString().PadLeft(11).Substring(0,11) + "|"
-            );
+                "|" + totalScore+
+                "|" + highestScore +
+                "|" + gamesPlayed +
+                "|" + gamesWon + "|"
+            );*/
         }
-        Message("+-=-=-=-=-=+=-=-=-=-=-=-=+=-=-=-=-=-=+=-=-=-=-=-=-=+=-=-=-=-=-=-=-=-+");
+
+        Message("+-=-=-=-=-=+=-=-=-=-=-=-=+=-=-=-=-=-=+=-=-=-=-=-=-=+=-=-=-=-=-=-=-=-+", ConsoleColor.DarkBlue);
     }
 
     public void PrintGameBoard()
@@ -120,6 +137,18 @@ public class Ui
         Console.ForegroundColor = color;
         Console.WriteLine(message);
         Console.ResetColor();
+    }
+
+    public void MessageSameLine(string message, ConsoleColor color)
+    {
+        Console.ForegroundColor = color;
+        Console.Write(message);
+        Console.ResetColor();
+    }
+    
+    public void MessageSameLine(string message)
+    {
+        Console.Write(message);
     }
 
     public void Clear()

@@ -29,7 +29,7 @@ public class GameManager
     public void StartGame()
     {
         _ui.PrintLeaderBoard(_database.GetLeaderBoard());
-        _database.CreateDbAndTable();
+        /*_database.CreateDbAndTable();
 
         PlayerInit();
         _ui.Message("Player one -> Name: " + _player1.Name + ", Gold: " + _player1.Gold);
@@ -46,7 +46,7 @@ public class GameManager
                 run = false;
                 EndGame();
             }
-        }
+        }*/
     }
 
     private void EndGame()
