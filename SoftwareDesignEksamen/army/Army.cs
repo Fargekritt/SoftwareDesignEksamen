@@ -54,7 +54,7 @@ public class Army
 
         for (int i = 0; i < Math.Min(attackerUnit.Reach, Units.Count); i++)
         {
-            if (i > 1)
+            if (i >= 1)
             {
                 damage = (damage * 90) / 100;
             }

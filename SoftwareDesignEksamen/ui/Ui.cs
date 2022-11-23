@@ -79,14 +79,14 @@ public class Ui
 
     public int PrintMultipleChoice(List<string> questions)
     {
-        Message("+-=-=-=-=-=+=-=-=-=-=-=-=+=-=-=+", ConsoleColor.DarkBlue);
+        Message("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+", ConsoleColor.DarkBlue);
         for (var i = 0; i < questions.Count; i++)
         {
             var question = questions[i];
             Message($"{i + 1}. {question}");
         }
 
-        Message("+-=-=-=-=-=+=-=-=-=-=-=-=+=-=-=+", ConsoleColor.DarkBlue);
+        Message("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+", ConsoleColor.DarkBlue);
         while (true)
         {
             var readInt = ReadInt();
@@ -139,7 +139,7 @@ public class Ui
 
     public void PressToContinue()
     {
-        Message("Press any key to continue");
+        Message("Press any key to continue",ConsoleColor.DarkMagenta);
         Console.ReadKey(true);
         Message("");
     }

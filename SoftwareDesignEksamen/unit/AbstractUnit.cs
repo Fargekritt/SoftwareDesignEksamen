@@ -88,7 +88,7 @@ public abstract class AbstractUnit
         {
             int damageTaken = Health;
             Health = 0;
-            _logger.Info($"{Name} Has now died </3", ConsoleColor.Magenta);
+            _logger.Info($"<!!!! {Name} Has now died </3 !!!!>", ConsoleColor.Magenta);
             return damageTaken;
         }
         Health -= damage;

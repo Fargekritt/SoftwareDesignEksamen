@@ -51,13 +51,17 @@ public class GameManager
         }
         
         PlayerInit();
+        _ui.Message("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+", ConsoleColor.DarkBlue);
         _ui.Message("Player one -> Name: " + _player1.Name + ", Gold: " + _player1.Gold);
-        _ui.Message("Player two -> Name: " + _player2.Name + ", Gold: " + _player2.Gold + "\n");
+        _ui.Message("Player two -> Name: " + _player2.Name + ", Gold: " + _player2.Gold );
+        _ui.Message("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+", ConsoleColor.DarkBlue);
+        _ui.Message("");
         ArmyInit();
         bool run = true;
         while (run)
         {
             Turn(_player1, _player2);
+            
             Turn(_player2, _player1);
 
             if (!PlayersAlive())
@@ -142,6 +146,7 @@ public class GameManager
         attacker.HealingTurn();
         defender.Update();
         attacker.Update();
+        _ui.PressToContinue();
     }
 
     private bool PlayersAlive()

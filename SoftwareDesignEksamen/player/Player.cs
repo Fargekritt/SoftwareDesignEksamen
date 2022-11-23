@@ -56,13 +56,13 @@ public class Player
 
     public void BuildArmy(List<string> unitTypes)
     {
-        _ui.Message(Name + ", choose the unit you want to add to your army");
+        _ui.Message(Name + ", choose the unit you want to add to your army",ConsoleColor.DarkMagenta);
         var unitFactory = new UnitFactory();
         bool run = true;
         while (run)
         {
             //Choose unit
-            _ui.Message($"Your current gold is {Gold}");
+            _ui.Message($"Your current gold is {Gold}",ConsoleColor.DarkMagenta);
             var playerUnitChoice = _ui.PrintMultipleChoice(unitTypes);
 
             // Pay, Create and  add unit. 
@@ -89,7 +89,7 @@ public class Player
 
             foreach (var armyUnit in ListArmy())
             {
-                _ui.Message("===========");
+                _ui.Message("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+", ConsoleColor.DarkBlue);
                 _ui.Message($"{armyUnit}");
             }
 
