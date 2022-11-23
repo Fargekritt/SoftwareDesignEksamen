@@ -24,8 +24,8 @@ public class Ui
     {
         Message("                              Leader Board!", ConsoleColor.DarkBlue);
         Message("+-=-=-=-=-=+=-=-=-=-=-=-=+=-=-=-=-=-=+=-=-=-=-=-=-=+=-=-=-=-=-=-=-=-+", ConsoleColor.DarkBlue);
-        MessageSameLine("|",ConsoleColor.DarkBlue);
-        MessageSameLine("   Username   | Total score | Highscore | Games played | Games won ");
+        Message("|",ConsoleColor.DarkBlue, false);
+        Message("   Username   | Total score | Highscore | Games played | Games won ", false);
         Message("|",ConsoleColor.DarkBlue);
         foreach (var highScore in leaderBoard)
         {
@@ -35,16 +35,16 @@ public class Ui
             string gamesPlayed = highScore.GamesPlayed.ToString().PadLeft(14).Substring(0, 14);
             string gamesWon = highScore.GamesWon.ToString().PadLeft(11).Substring(0, 11);
             Message("+--------------+-------------+-----------+--------------+-----------+");
-            MessageSameLine("|",ConsoleColor.DarkBlue);
-            MessageSameLine(username);
-            MessageSameLine("|");
-            MessageSameLine(totalScore);
-            MessageSameLine("|");
-            MessageSameLine(highestScore);
-            MessageSameLine("|");
-            MessageSameLine(gamesPlayed);
-            MessageSameLine("|");
-            MessageSameLine(gamesWon);
+            Message("|",ConsoleColor.DarkBlue, false);
+            Message(username, false);
+            Message("|", false);
+            Message(totalScore, false);
+            Message("|", false);
+            Message(highestScore, false);
+            Message("|", false);
+            Message(gamesPlayed, false);
+            Message("|", false);
+            Message(gamesWon, false);
             Message("|",ConsoleColor.DarkBlue);
             
             /*Message(
@@ -127,29 +127,25 @@ public class Ui
 
     // Print message to console
 
-    public void Message(string message)
+    public void Message(string message, bool newLine = true)
     {
-        Console.WriteLine(message);
+        if (newLine)
+        {
+            Console.WriteLine(message);
+        }
+        else
+        {
+            Console.Write(message);
+        }
     }
 
-    public void Message(string message, ConsoleColor color)
+    public void Message(string message, ConsoleColor color, bool newLine = true)
     {
         Console.ForegroundColor = color;
-        Console.WriteLine(message);
-        Console.ResetColor();
-    }
-
-    public void MessageSameLine(string message, ConsoleColor color)
-    {
-        Console.ForegroundColor = color;
-        Console.Write(message);
+        Message(message, newLine);
         Console.ResetColor();
     }
     
-    public void MessageSameLine(string message)
-    {
-        Console.Write(message);
-    }
 
     public void Clear()
     {
