@@ -104,7 +104,7 @@ public class Db
         command.ExecuteNonQuery();
     }
 
-    public List<HighScoreDto> GetHighScore()
+    public List<HighScoreDto> GetLeaderBoard()
     {
         var leaderBoard = new List<HighScoreDto>();
 
