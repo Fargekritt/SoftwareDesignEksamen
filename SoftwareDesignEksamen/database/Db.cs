@@ -103,4 +103,31 @@ public class Db
 
         command.ExecuteNonQuery();
     }
+
+    public List<HighScoreDto> GetHighScore()
+    {
+        var leaderBoard = new List<HighScoreDto>();
+
+
+        using SqliteConnection connection = new("Data Source = exampleSqlite.db");
+        connection.Open();
+
+        SqliteCommand command = connection.CreateCommand();
+        command.CommandText = @"
+        SELECT * FROM leader_board ORDER BY highest_score DESC";
+
+        SqliteDataReader reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            var dto = new HighScoreDto();
+            dto.Username = reader.GetString(1);
+            dto.TotalScore = reader.GetInt32(2);
+            dto.HighestScore = reader.GetInt32(3);
+            dto.GamesPlayed = reader.GetInt32(4);
+            dto.GamesWon = reader.GetInt32(5);
+            leaderBoard.Add(dto);
+        }
+
+        return leaderBoard;
+    }
 }

@@ -28,7 +28,13 @@ public class GameManager
 
     public void StartGame()
     {
-        _database.CreateDbAndTable();
+        var leaderBoard = _database.GetHighScore();
+
+        foreach (var highScoreDto in leaderBoard)
+        {
+            _ui.Message(highScoreDto.Username);
+        }
+            _database.CreateDbAndTable();
 
         PlayerInit();
         _ui.Message("Player one -> Name: " + _player1.Name + ", Gold: " + _player1.Gold);
