@@ -22,16 +22,24 @@ public class Ui
 
     public void PrintLeaderBoard(List<HighScoreDto> leaderBoard)
     {
+        
+        Message("                              Leader Board!",ConsoleColor.Green);
+        Message("+-=-=-=-=-=+=-=-=-=-=-=-=+=-=-=-=-=-=+=-=-=-=-=-=-=+=-=-=-=-=-=-=-=-+");
+        Message("|   Username   | Total score | Highscore | Games played | Games won |");
+
         foreach (var highScore in leaderBoard)
         {
+            string username = highScore.Username.PadRight(14).Substring(0, 14);
+            Message("+--------------+-------------+-----------+--------------+-----------+");
             Message(
-                highScore.Username
-                + highScore.TotalScore
-                + highScore.HighestScore
-                + highScore.GamesPlayed
-                + highScore.GamesWon
+                "|" + username +
+                "|" + highScore.TotalScore.ToString().PadLeft(13).Substring(0,13) +
+                "|" + highScore.HighestScore.ToString().PadLeft(11).Substring(0,11) +
+                "|" + highScore.GamesPlayed.ToString().PadLeft(14).Substring(0,14) +
+                "|" + highScore.GamesWon.ToString().PadLeft(11).Substring(0,11) + "|"
             );
         }
+        Message("+-=-=-=-=-=+=-=-=-=-=-=-=+=-=-=-=-=-=+=-=-=-=-=-=-=+=-=-=-=-=-=-=-=-+");
     }
 
     public void PrintGameBoard()
