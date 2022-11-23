@@ -29,8 +29,27 @@ public class GameManager
     public void StartGame()
     {
         _database.CreateDbAndTable();
-        _ui.PrintLeaderBoard(_database.GetLeaderBoard());
-
+        
+        bool startGame = false;
+        
+        while (!startGame)
+        {
+            int choice = _ui.PrintStartMenu();
+            switch (choice)
+            {
+                case 1 :
+                    startGame = true;
+                    break;
+                case 2: 
+                    _ui.PrintLeaderBoard(_database.GetLeaderBoard());
+                    _ui.PressToContinue();
+                    _ui.Clear();
+                    break;
+                case 3:
+                    break;
+            }
+        }
+        
         PlayerInit();
         _ui.Message("Player one -> Name: " + _player1.Name + ", Gold: " + _player1.Gold);
         _ui.Message("Player two -> Name: " + _player2.Name + ", Gold: " + _player2.Gold + "\n");

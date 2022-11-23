@@ -24,9 +24,9 @@ public class Ui
     {
         Message("                              Leader Board!", ConsoleColor.DarkBlue);
         Message("+-=-=-=-=-=+=-=-=-=-=-=-=+=-=-=-=-=-=+=-=-=-=-=-=-=+=-=-=-=-=-=-=-=-+", ConsoleColor.DarkBlue);
-        Message("|",ConsoleColor.DarkBlue, false);
+        Message("|", ConsoleColor.DarkBlue, false);
         Message("   Username   | Total score | Highscore | Games played | Games won ", false);
-        Message("|",ConsoleColor.DarkBlue);
+        Message("|", ConsoleColor.DarkBlue);
         foreach (var highScore in leaderBoard)
         {
             string username = highScore.Username.PadRight(14).Substring(0, 14);
@@ -35,7 +35,7 @@ public class Ui
             string gamesPlayed = highScore.GamesPlayed.ToString().PadLeft(14).Substring(0, 14);
             string gamesWon = highScore.GamesWon.ToString().PadLeft(11).Substring(0, 11);
             Message("+--------------+-------------+-----------+--------------+-----------+");
-            Message("|",ConsoleColor.DarkBlue, false);
+            Message("|", ConsoleColor.DarkBlue, false);
             Message(username, false);
             Message("|", false);
             Message(totalScore, false);
@@ -45,8 +45,8 @@ public class Ui
             Message(gamesPlayed, false);
             Message("|", false);
             Message(gamesWon, false);
-            Message("|",ConsoleColor.DarkBlue);
-            
+            Message("|", ConsoleColor.DarkBlue);
+
             /*Message(
                 "|" + username +
                 "|" + totalScore+
@@ -63,18 +63,30 @@ public class Ui
     {
     }
 
-    public void PrintStartMenu()
+    public int PrintStartMenu()
     {
+        var alternatives = new List<string>()
+        {
+            "Start Game.",
+            "Print Leaderboard.",
+            "Print Highscore of user."
+        };
+        Message("           Start Menu", ConsoleColor.DarkBlue);
+        
+        return PrintMultipleChoice(alternatives);
+        
     }
 
     public int PrintMultipleChoice(List<string> questions)
     {
+        Message("+-=-=-=-=-=+=-=-=-=-=-=-=+=-=-=+", ConsoleColor.DarkBlue);
         for (var i = 0; i < questions.Count; i++)
         {
             var question = questions[i];
             Message($"{i + 1}. {question}");
         }
 
+        Message("+-=-=-=-=-=+=-=-=-=-=-=-=+=-=-=+", ConsoleColor.DarkBlue);
         while (true)
         {
             var readInt = ReadInt();
@@ -125,6 +137,13 @@ public class Ui
         return ReadString();
     }
 
+    public void PressToContinue()
+    {
+        Message("Press any key to continue");
+        Console.ReadKey(true);
+        Message("");
+    }
+
     // Print message to console
 
     public void Message(string message, bool newLine = true)
@@ -145,7 +164,7 @@ public class Ui
         Message(message, newLine);
         Console.ResetColor();
     }
-    
+
 
     public void Clear()
     {
