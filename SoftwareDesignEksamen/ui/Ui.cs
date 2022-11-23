@@ -1,3 +1,5 @@
+using SoftwareDesignEksamen.database;
+
 namespace SoftwareDesignEksamen.ui;
 
 public class Ui
@@ -10,7 +12,6 @@ public class Ui
 
     private Ui()
     {
-        
     }
 
     public static Ui CreateInstance()
@@ -18,6 +19,20 @@ public class Ui
         return _ui ??= new Ui();
     }
 
+
+    public void PrintLeaderBoard(List<HighScoreDto> leaderBoard)
+    {
+        foreach (var highScore in leaderBoard)
+        {
+            Message(
+                highScore.Username
+                + highScore.TotalScore
+                + highScore.HighestScore
+                + highScore.GamesPlayed
+                + highScore.GamesWon
+            );
+        }
+    }
 
     public void PrintGameBoard()
     {
@@ -91,7 +106,7 @@ public class Ui
     {
         Console.WriteLine(message);
     }
-    
+
     public void Message(string message, ConsoleColor color)
     {
         Console.ForegroundColor = color;

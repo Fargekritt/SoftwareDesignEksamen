@@ -1,4 +1,5 @@
 using SoftwareDesignEksamen.battleLog;
+using SoftwareDesignEksamen.database;
 using SoftwareDesignEksamen.player;
 using SoftwareDesignEksamen.ui;
 using SoftwareDesignEksamen.unit;
@@ -14,6 +15,8 @@ public class GameManager
 
     private Player _player2;
 
+    private Db _database = new Db();
+
     private readonly Ui _ui = Ui.CreateInstance();
     private BattleLogger _logger = BattleLogger.CreateInstance();
 
@@ -25,6 +28,9 @@ public class GameManager
 
     public void StartGame()
     {
+        _ui.PrintLeaderBoard(_database.GetLeaderBoard());
+        _database.CreateDbAndTable();
+
         PlayerInit();
         _ui.Message("Player one -> Name: " + _player1.Name + ", Gold: " + _player1.Gold);
         _ui.Message("Player two -> Name: " + _player2.Name + ", Gold: " + _player2.Gold + "\n");
@@ -40,22 +46,29 @@ public class GameManager
                 run = false;
                 EndGame();
             }
-
         }
     }
 
     private void EndGame()
     {
         _ui.Message("Game over lmao");
+        int score = 100;
         var winner = _player1.IsAlive();
         if (winner)
         {
+            score += _player1.Gold - _player2.Gold;
             _ui.Message($"{_player1.Name} Won the game", ConsoleColor.Blue);
+            _database.UpdateScoreBoard(_player1.Name, score, true);
+            _database.UpdateScoreBoard(_player2.Name, 0, false);
         }
         else
         {
+            score += _player2.Gold - _player1.Gold;
             _ui.Message($"{_player2.Name} Won the game", ConsoleColor.Blue);
+            _database.UpdateScoreBoard(_player2.Name, score, true);
+            _database.UpdateScoreBoard(_player1.Name, 0, false);
         }
+        // USE IS ALIVE ???
     }
 
     private void PlayerInit()
@@ -75,7 +88,8 @@ public class GameManager
     private void BuildArmy(Player player)
     {
         List<string> baseUnits = new List<string>
-        { // Change the cost to not being hardcoded, maybe import from json ??
+        {
+            // Change the cost to not being hardcoded, maybe import from json ??
             "DPS (12)",
             "Tank (22)",
             "Healer (10)",
@@ -104,7 +118,7 @@ public class GameManager
         {
             return;
         }
-        
+
         Attack(attacker, defender);
         attacker.HealingTurn();
         defender.Update();
