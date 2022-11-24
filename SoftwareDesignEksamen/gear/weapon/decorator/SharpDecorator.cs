@@ -7,5 +7,6 @@ public class SharpDecorator : AbstractWeaponDecorator
     public SharpDecorator(AbstractWeapon original) : base(original)
     {
         Damage = _original.Damage + 2;
+        Cost = _original.Cost + 2;
     }
 }
