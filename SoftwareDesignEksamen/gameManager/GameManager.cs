@@ -26,6 +26,9 @@ public class GameManager
 
     #region Methods
 
+    /// <summary>
+    /// Starts the game loop itself
+    /// </summary>
     public void StartGame()
     {
         _database.CreateDbAndTable();
@@ -61,7 +64,6 @@ public class GameManager
         while (run)
         {
             Turn(_player1, _player2);
-            
             Turn(_player2, _player1);
 
             if (!PlayersAlive())
@@ -72,6 +74,9 @@ public class GameManager
         }
     }
 
+    /// <summary>
+    /// Ends the game. Updates the scoreboard, with the correct values based on the winner 
+    /// </summary>
     private void EndGame()
     {
         _ui.Message("Game over lmao");
@@ -94,6 +99,9 @@ public class GameManager
         // USE IS ALIVE ???
     }
 
+    /// <summary>
+    /// Inits the players. with names from the user
+    /// </summary>
     private void PlayerInit()
     {
         var name = _ui.AskQuestion("Enter player one name");
@@ -102,6 +110,9 @@ public class GameManager
         _player2 = new Player(name, 100, _ui);
     }
 
+    /// <summary>
+    /// Builds the armies for both the players
+    /// </summary>
     private void ArmyInit()
     {
         BuildArmy(_player1);
