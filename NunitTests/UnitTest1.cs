@@ -235,11 +235,27 @@ public class Tests
 
         defenderArmy.Update();
         Assert.That(defenderArmy.Units, Has.Count.EqualTo(1));
-        
+
         defenderArmy.AttackedBy(attackerArmy);
         Assert.That(defenderArmy.Units[0].Health, Is.EqualTo(0));
     }
 
-     
+    [Test]
+    public void TestHealingTurn()
+    {
+        var factory = new UnitFactory();
+        var dps = factory.CreateUnit(UnitEnum.Dps);
+        var healer = factory.CreateUnit(UnitEnum.Healer);
+        
+        var army = new Army();
+        army.AddUnit(dps);
+        army.AddUnit(healer);
+
+        army.Units[0].TakeDamage(50);
+        army.HealingTurn();
+
+        Assert.That(army.Units[0].Health, Is.EqualTo(65));
+    }
+
     #endregion
 }
