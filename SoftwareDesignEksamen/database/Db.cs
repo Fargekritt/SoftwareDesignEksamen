@@ -38,7 +38,7 @@ public class Db
 
         SqliteCommand command = connection.CreateCommand();
 
-        command.CommandText = @"DROP TABLE leader_board";
+        command.CommandText = @"DROP TABLE IF EXISTS leader_board";
         command.ExecuteNonQuery();
     }
 
