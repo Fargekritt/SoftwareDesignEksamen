@@ -17,31 +17,3 @@ public abstract class UnitDecorator:AbstractUnit
         Cost = _original.Cost;
     }
 }
-
-class TankDecorator : UnitDecorator
-{
-    public TankDecorator(AbstractUnit original) : base(original)
-    {
-        Armor = (int)(_original.Armor * 1.4);
-        Damage = (int)(_original.Damage * 0.8);
-    }
-}
-
-class DpsDecorator : UnitDecorator
-{
-    public DpsDecorator(AbstractUnit original) : base(original)
-    {
-        Damage = (int)(_original.Damage *  1.5);
-        Healing = (int)(_original.Healing * 0.2);
-        Armor = (int)(_original.Armor * 0.5);
-    }
-}
-
-class HealerDecorator : UnitDecorator
-{
-    public HealerDecorator(AbstractUnit original) : base(original)
-    {
-        Healing = (int)(_original.Healing * 1.5);
-        Damage = (int)(_original.Damage * 0.7);
-    }
-}
