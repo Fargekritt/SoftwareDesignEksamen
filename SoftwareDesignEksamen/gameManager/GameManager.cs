@@ -15,7 +15,7 @@ public class GameManager
 
     private Player _player2;
 
-    private Db _database = new Db();
+    private Db _database = new Db("leaderBoard");
 
     private readonly Ui _ui = Ui.CreateInstance();
     private BattleLogger _logger = BattleLogger.CreateInstance();

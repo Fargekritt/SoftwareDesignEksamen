@@ -4,9 +4,16 @@ namespace SoftwareDesignEksamen.database;
 
 public class Db
 {
+
+    private string _dataBase;
+
+    public Db(string dataBase)
+    {
+        _dataBase = dataBase;
+    }
     public void CreateDbAndTable()
     {
-        using SqliteConnection connection = new("Data Source = exampleSqlite.db");
+        using SqliteConnection connection = new("Data Source = "+_dataBase+".db");
         connection.Open();
 
         SqliteCommand command = connection.CreateCommand();
@@ -39,7 +46,7 @@ public class Db
 
     private bool CheckIfUserExists(string username)
     {
-        using SqliteConnection connection = new("Data Source = exampleSqlite.db");
+        using SqliteConnection connection = new("Data Source ="+_dataBase+".db");
         connection.Open();
         SqliteCommand command = connection.CreateCommand();
         command.CommandText = @"
@@ -58,7 +65,7 @@ public class Db
 
     private void UpdateScore(string username, int score, bool winner)
     {
-        using SqliteConnection connection = new("Data Source = exampleSqlite.db");
+        using SqliteConnection connection = new("Data Source = "+_dataBase+".db");
         connection.Open();
 
         SqliteCommand command = connection.CreateCommand();
@@ -82,7 +89,7 @@ public class Db
 
     private void AddNewScore(string username, int score, bool winner)
     {
-        using SqliteConnection connection = new("Data Source = exampleSqlite.db");
+        using SqliteConnection connection = new("Data Source = "+_dataBase+".db");
         connection.Open();
 
         SqliteCommand command = connection.CreateCommand();
@@ -109,7 +116,7 @@ public class Db
         var leaderBoard = new List<HighScoreDto>();
 
 
-        using SqliteConnection connection = new("Data Source = exampleSqlite.db");
+        using SqliteConnection connection = new("Data Source = "+_dataBase+".db");
         connection.Open();
 
         SqliteCommand command = connection.CreateCommand();
