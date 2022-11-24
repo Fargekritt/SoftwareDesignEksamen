@@ -31,6 +31,17 @@ public class Db
         command.ExecuteNonQuery();
     }
 
+    public void DropLeaderBoard()
+    {
+        using SqliteConnection connection = new("Data Source = "+_dataBase+".db");
+        connection.Open();
+
+        SqliteCommand command = connection.CreateCommand();
+
+        command.CommandText = @"DROP TABLE leader_board";
+        command.ExecuteNonQuery();
+    }
+
 
     public void UpdateScoreBoard(string username, int score, bool winner)
     {
