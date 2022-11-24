@@ -1,6 +1,9 @@
+using System.ComponentModel;
+using SoftwareDesignEksamen.army;
 using SoftwareDesignEksamen.gear.chestPlate;
 using SoftwareDesignEksamen.gear.shield;
 using SoftwareDesignEksamen.gear.weapon.decorator;
+using SoftwareDesignEksamen.player;
 using SoftwareDesignEksamen.unit;
 using SoftwareDesignEksamen.unit.unitDecorator;
 using SoftwareDesignEksamen.unit.unitFactory;
@@ -10,7 +13,6 @@ namespace NunitTests;
 
 public class Tests
 {
-    
     // ARMY
 
     // TEST methodes attackedBy, healingTurn .....
@@ -152,7 +154,6 @@ public class Tests
         int expectedLifeSteal,
         int expectedHp, int expectedArmor, int expectedHealing)
     {
-        
         AbstractUnit? abstractUnit = decorator switch
         {
             "dps" => new DpsDecorator(new HumanUnit()),
@@ -179,7 +180,6 @@ public class Tests
     [TestCase("healer", 10, 7, 1, 0, 50, 0, 15)]
     [TestCase("tank", 22, 66, 1, 0, 150, 57, 0)]
     [TestCase("raidBoss", 37, 80, 2, 30, 150, 30, 0)]
-
     public void TestUnitFactory(string unit, int expectedCost, int expectedDmg, int expectedReach,
         int expectedLifeSteal,
         int expectedHp, int expectedArmor, int expectedHealing)
@@ -211,8 +211,35 @@ public class Tests
 
     #region Army
 
-    
+    [Test]
+    public void TestAttackedBy()
+    {
+        UnitFactory factory = new UnitFactory();
+        var defenderDps1 = factory.CreateUnit(UnitEnum.Dps);
+        var defenderDps2 = factory.CreateUnit(UnitEnum.Dps);
+        Army defenderArmy = new Army();
+        defenderArmy.AddUnit(defenderDps1);
+        defenderArmy.AddUnit(defenderDps2);
 
 
+        var attackerDps1 = factory.CreateUnit(UnitEnum.Dps);
+        var attackerDps2 = factory.CreateUnit(UnitEnum.Dps);
+        Army attackerArmy = new Army();
+        attackerArmy.AddUnit(attackerDps1);
+        attackerArmy.AddUnit(attackerDps2);
+
+        Assert.That(defenderArmy.Units, Has.Count.EqualTo(2));
+
+        defenderArmy.AttackedBy(attackerArmy);
+        Assert.That(defenderArmy.Units[0].Health, Is.EqualTo(0));
+
+        defenderArmy.Update();
+        Assert.That(defenderArmy.Units, Has.Count.EqualTo(1));
+        
+        defenderArmy.AttackedBy(attackerArmy);
+        Assert.That(defenderArmy.Units[0].Health, Is.EqualTo(0));
+    }
+
+     
     #endregion
 }
