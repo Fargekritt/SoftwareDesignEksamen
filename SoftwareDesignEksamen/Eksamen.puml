@@ -68,14 +68,15 @@ abstract class AbstractUnit{
 + isAlive(): bool
 + TakeDamage(int Damage): int
 }
-class DPSUnit
-class TankUnit
-class HealerUnit
+class HumanUnit
+class OrcUnit
+class ElfUnit
 abstract class UnitDecorator{
 - Original: AbstractUnit
 }
-class SwordDecorator
-class ShieldDecorator
+class DPSDecorator
+class TankDecorator
+class HealerDecorator
 
 abstract class AbstractWeapon{
 + Cost: int
@@ -117,12 +118,15 @@ Player - Army : has a Army
 Army - AbstractUnit : has many units
 AbstractWeapon --o AbstractUnit
 AbstractShield ---o AbstractUnit
-AbstractUnit <-- DPSUnit
-AbstractUnit <-- TankUnit
-AbstractUnit <-- HealerUnit
+AbstractUnit <-- HumanUnit
+AbstractUnit <-- OrcUnit
+AbstractUnit <-- ElfUnit
 AbstractUnit <-- UnitDecorator
-UnitDecorator <-- ShieldDecorator
-UnitDecorator <-- SwordDecorator
+UnitDecorator <-- TankDecorator
+UnitDecorator <-- DPSDecorator
+UnitDecorator <-- HealerDecorator
+
+
 
 
 

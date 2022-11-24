@@ -1,5 +1,5 @@
 ﻿namespace SoftwareDesignEksamen.gear.chestPlate;
 
-class NoChestPlate : AbstractChestPlate
+public class NoChestPlate : AbstractChestPlate
 {
 }

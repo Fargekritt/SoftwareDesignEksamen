@@ -76,6 +76,11 @@ public abstract class AbstractUnit
     }
 
     // Reduces health in unit and returns the damage dealt
+    /// <summary>
+    /// Reduces the units health based on the damage taken and armor
+    /// </summary>
+    /// <param name="damage">how much damage the attacker has</param>
+    /// <returns>how much damage was dealt after armor reductions</returns>
     public int TakeDamage(int damage)
     {
         damage -= Armor;
@@ -101,6 +106,11 @@ public abstract class AbstractUnit
     //  damage === damage - armor FOR NOW!!!
 
     // What will happen when damage is dealt.
+    
+    /// <summary>
+    /// How much damage the unit has dealt on enemy units. Lifesteals based on the damagedealt
+    /// </summary>
+    /// <param name="damageDealt">DamageDealt</param>
     public void DamageDealt(int damageDealt)
     {
         _logger.Info($"{Name} dealt {damageDealt} amount of damage");
@@ -113,6 +123,10 @@ public abstract class AbstractUnit
         
     }
 
+    /// <summary>
+    /// Heals the unit. caps at the units max health
+    /// </summary>
+    /// <param name="heal">how much to heal the unit for</param>
     public void Heal(int heal)
     {
         _logger.Info($"{Name} is healing for {heal}");

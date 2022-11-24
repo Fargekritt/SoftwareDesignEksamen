@@ -18,17 +18,29 @@ public class Army
     
     #endregion
 
+    /// <summary>
+    /// Add a Unit to the army. if the unit has healing the army combinedHealingPower will also increase
+    /// </summary>
+    /// <param name="unit">Unit to be added to Army</param>
     public void AddUnit(AbstractUnit unit)
     {
         _combinedHealingPower += unit.Healing;
         Units.Add(unit);
     }
 
+    /// <summary>
+    /// Method to make the army be attacked by another Army
+    /// </summary>
+    /// <param name="attacker">Army that is attacking this army</param>
     public void AttackedBy(Army attacker)
     {
-        Attack(attacker.NextUnit());
+        Defend(attacker.NextUnit());
     }
 
+    /// <summary>
+    /// <c>NextUnit</c> returns the next unit from the army.
+    /// </summary>
+    /// <returns>AbstractUnit</returns>
     private AbstractUnit NextUnit()
     {
 
@@ -47,7 +59,11 @@ public class Army
         return unit;
     }
 
-    private void Attack(AbstractUnit attackerUnit)
+    /// <summary>
+    /// The actually attack from one unit
+    /// </summary>
+    /// <param name="attackerUnit">Unit to attack the army</param>
+    private void Defend(AbstractUnit attackerUnit)
     {
         var damageDealt = 0;
         var damage = attackerUnit.Damage;
@@ -67,6 +83,9 @@ public class Army
         attackerUnit.DamageDealt(damageDealt);
     }
 
+    /// <summary>
+    /// Heals all the units in the army with the combinedHealingPower of the army
+    /// </summary>
     public void HealingTurn()
     {
         foreach (var unit in Units)
@@ -80,6 +99,9 @@ public class Army
         ClearDead();
     }
 
+    /// <summary>
+    /// Removes all dead units from the army
+    /// </summary>
     private void ClearDead()
     {
         for(int i = Units.Count-1; i >= 0; i--)
@@ -94,6 +116,10 @@ public class Army
         }
     }
 
+    /// <summary>
+    /// Check if the army has any units
+    /// </summary>
+    /// <returns>true if Units.Count > 0</returns>
     public bool IsAlive()
     {
         return Units.Count > 0;

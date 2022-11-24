@@ -1,10 +1,10 @@
 ﻿namespace SoftwareDesignEksamen.gear.shield;
 
-class KiteShield : AbstractShield
+public class KiteShield : AbstractShield
 {
     public KiteShield()
     {
-        Armor = 20;
+        Armor = 15;
         Cost = 10;
     }
 }

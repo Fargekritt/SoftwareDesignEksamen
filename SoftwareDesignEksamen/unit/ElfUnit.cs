@@ -1,6 +1,6 @@
 ﻿namespace SoftwareDesignEksamen.unit;
 
-class ElfUnit : AbstractUnit
+public class ElfUnit : AbstractUnit
 {
     public ElfUnit()
     {

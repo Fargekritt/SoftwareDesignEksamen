@@ -2,7 +2,7 @@
 
 namespace SoftwareDesignEksamen.gear.weapon.decorator;
 
-class ReachDecorator : AbstractWeaponDecorator
+public class ReachDecorator : AbstractWeaponDecorator
 {
     public ReachDecorator(AbstractWeapon original) : base(original)
     {
