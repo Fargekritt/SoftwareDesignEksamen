@@ -157,13 +157,5 @@ public class GameManager
         return _player1.IsAlive() && _player2.IsAlive();
     }
 
-    private void SaveHighScore()
-    {
-    }
-
-    private void BattleLog()
-    {
-    }
-
     #endregion
 }
