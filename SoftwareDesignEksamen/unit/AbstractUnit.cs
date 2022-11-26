@@ -18,7 +18,7 @@ public abstract class AbstractUnit
     private readonly int _damage;
     private readonly int _reach;
     private readonly int _armor;
-    private BattleLogger _logger = BattleLogger.CreateInstance();
+    private IBattleLogger _logger = BattleLogger.CreateInstance();
 
     public string Description { get; set; } = "";
     public int Health { get; set; }

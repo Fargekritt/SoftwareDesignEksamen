@@ -43,7 +43,7 @@ public class Player
         _logger.Info($"{Name} Is getting attacked by {attacker.Name}", ConsoleColor.DarkRed);
         _army.AttackedBy(attacker._army);
     }
-
+ 
     public void AddUnit(AbstractUnit unit)
     {
         _army.AddUnit(unit);

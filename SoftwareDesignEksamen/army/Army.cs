@@ -7,7 +7,7 @@ public class Army
 {
     #region Fields
 
-    private BattleLogger _logger = BattleLogger.CreateInstance();
+    private IBattleLogger _logger = BattleLogger.CreateInstance();
     private int _combinedHealingPower = 0;
     private int _unitTurn = 0;
 
