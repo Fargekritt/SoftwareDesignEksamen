@@ -5,7 +5,7 @@ namespace SoftwareDesignEksamen.battleLog;
 public class BattleLogger : IBattleLogger
 {
     private static BattleLogger? _logger;
-    private Ui _ui = Ui.CreateInstance();
+    private IUi _ui = Ui.CreateInstance();
 
     private BattleLogger()
     {

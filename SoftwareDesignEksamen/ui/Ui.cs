@@ -2,10 +2,9 @@ using SoftwareDesignEksamen.database;
 
 namespace SoftwareDesignEksamen.ui;
 
-public class Ui
+public class Ui : IUi
 {
-    public int FontSize { get; set; }
-    public ConsoleColor Color { get; set; }
+    
     private static Ui? _ui;
 
     #region Methods

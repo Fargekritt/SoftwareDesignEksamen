@@ -11,10 +11,10 @@ public class Player
 
     private BattleLogger _logger = BattleLogger.CreateInstance();
     private Army _army;
-    private readonly Ui _ui;
+    private readonly IUi _ui;
 
 
-    public Player(string name, int gold, Ui ui)
+    public Player(string name, int gold, IUi ui)
     {
         Name = name;
         Gold = gold;

@@ -17,7 +17,7 @@ public class GameManager
 
     private Db _database = new Db("leaderBoard");
 
-    private readonly Ui _ui = Ui.CreateInstance();
+    private readonly IUi _ui = Ui.CreateInstance();
     private IBattleLogger _logger = BattleLogger.CreateInstance();
 
     //private GameBoard _gameBoard;
