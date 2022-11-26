@@ -67,8 +67,7 @@ public class Ui : IUi
         var alternatives = new List<string>()
         {
             "Start Game.",
-            "Print Leaderboard.",
-            "Print Highscore of user."
+            "Print Leaderboard."
         };
         Message("           Start Menu", ConsoleColor.DarkBlue);
         

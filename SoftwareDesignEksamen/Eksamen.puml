@@ -16,6 +16,17 @@ interface IUI{
 
 class UI
 
+class Db{
+- database: string
++ CreateDbAndTable(): void
++ DropLeaderBoard(): void
++ UpdateScoreBoard(): void
++ GetLeaderBoard(): List<HighScoreDto>
+- CheckIfUserExsists(): bool
+- UpdateScore(): void
+- AddNewScore(): void
+}
+
 class GameManager{
 - Player1: Player
 - Player2: Player
@@ -109,8 +120,6 @@ class KiteShield
 
 abstract class ShieldDecorator
 
-
-
 abstract class ChestPlate{
 + Cost: int
 + Armor: int
@@ -142,6 +151,7 @@ WeaponDecorator <-- LifeStealDecorator
 IUI <- UI
 UI -- GameManager
 GameManager o- Player
+GameManager -- Db
 Player - Army : has a Army
 Army - Unit : has many units
 Unit o--- Weapon
