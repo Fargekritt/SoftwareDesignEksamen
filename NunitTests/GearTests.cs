@@ -13,7 +13,7 @@ public class GearTests
     [TestCase("spear", 2, 30, 1, 0)]
     public void TestWeapons(string weapon, int expectedCost, int expectedDmg, int expectedReach, int expectedLifeSteal)
     {
-        AbstractWeapon abstractWeapon = weapon switch
+        Weapon abstractWeapon = weapon switch
         {
             "sword" => new Sword(),
             "spear" => new Spear(),
@@ -35,7 +35,7 @@ public class GearTests
     public void TestWeaponDecorators(string decorator, int expectedCost, int expectedDmg, int expectedReach,
         int expectedLifeSteal)
     {
-        AbstractWeapon abstractWeapon = new Sword();
+        Weapon abstractWeapon = new Sword();
         switch (decorator)
         {
             case "reach":
@@ -62,7 +62,7 @@ public class GearTests
     [TestCase("kiteShield", 10, 15)]
     public void TestShields(string shield, int expectedCost, int expectedArmor)
     {
-        AbstractShield abstractShield = shield switch
+        Shield abstractShield = shield switch
         {
             "kiteShield" => new KiteShield(),
             _ => new NoShield()
@@ -78,7 +78,7 @@ public class GearTests
     [TestCase("noChestPlate", 0, 0)]
     public void TestChestPlate(string chestPlate, int expectedCost, int expectedArmor)
     {
-        AbstractChestPlate abstractChestPlate = new NoChestPlate();
+        ChestPlate abstractChestPlate = new NoChestPlate();
 
         /*switch (chestPlate)
         {

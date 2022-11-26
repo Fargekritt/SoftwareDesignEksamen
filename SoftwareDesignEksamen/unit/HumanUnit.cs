@@ -1,6 +1,6 @@
 ﻿namespace SoftwareDesignEksamen.unit;
 
-public class HumanUnit : AbstractUnit
+public class HumanUnit : Unit
 {
     public HumanUnit()
     {

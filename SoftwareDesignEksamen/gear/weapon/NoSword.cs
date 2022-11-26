@@ -1,6 +1,6 @@
 ﻿namespace SoftwareDesignEksamen.weapon;
 
-public class NoSword : AbstractWeapon
+public class NoSword : Weapon
 {
     //Runs base Constructor from AbstractWeapon
 }

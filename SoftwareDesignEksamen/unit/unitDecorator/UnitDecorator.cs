@@ -1,10 +1,10 @@
 ﻿namespace SoftwareDesignEksamen.unit.unitDecorator;
 
-public abstract class UnitDecorator:AbstractUnit
+public abstract class UnitDecorator:Unit
 {
-    protected readonly AbstractUnit _original;
+    protected readonly Unit _original;
 
-    protected UnitDecorator(AbstractUnit original)
+    protected UnitDecorator(Unit original)
     {
         _original = original;
         

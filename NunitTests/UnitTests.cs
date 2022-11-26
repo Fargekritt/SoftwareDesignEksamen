@@ -13,7 +13,7 @@ public class UnitTests
     public void TestUnits(string unit, int expectedCost, int expectedDmg, int expectedReach, int expectedLifeSteal,
         int expectedHp, int expectedArmor, int expectedHealing)
     {
-        AbstractUnit? abstractUnit = unit switch
+        Unit? abstractUnit = unit switch
         {
             "elf" => new ElfUnit(),
             "human" => new HumanUnit(),
@@ -41,7 +41,7 @@ public class UnitTests
         int expectedLifeSteal,
         int expectedHp, int expectedArmor, int expectedHealing)
     {
-        AbstractUnit? abstractUnit = decorator switch
+        Unit? abstractUnit = decorator switch
         {
             "dps" => new DpsDecorator(new HumanUnit()),
             "healer" => new HealerDecorator(new ElfUnit()),

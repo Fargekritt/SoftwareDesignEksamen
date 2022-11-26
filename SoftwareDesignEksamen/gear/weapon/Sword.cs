@@ -2,7 +2,7 @@
 
 namespace SoftwareDesignEksamen.weapon;
 
-public class Sword : AbstractWeapon
+public class Sword : Weapon
 {
     public Sword()
     {

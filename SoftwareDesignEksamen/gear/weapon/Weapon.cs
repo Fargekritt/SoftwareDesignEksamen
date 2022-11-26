@@ -1,6 +1,6 @@
 ﻿namespace SoftwareDesignEksamen.weapon;
 
-public abstract class AbstractWeapon
+public abstract class Weapon
 {
 
     public int Cost { get; protected init; }
@@ -8,7 +8,7 @@ public abstract class AbstractWeapon
     public int Reach { get; protected init; }
     public int LifeSteal { get; protected init; }
     
-    protected AbstractWeapon()
+    protected Weapon()
     {
         Cost = 0;
         Damage = 0;

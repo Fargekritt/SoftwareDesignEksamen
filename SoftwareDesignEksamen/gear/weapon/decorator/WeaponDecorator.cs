@@ -2,11 +2,11 @@
 
 namespace SoftwareDesignEksamen.gear.weapon.decorator;
 
-public abstract class AbstractWeaponDecorator : AbstractWeapon
+public abstract class WeaponDecorator : Weapon
 {
-    protected readonly AbstractWeapon _original;
+    protected readonly Weapon _original;
 
-    public AbstractWeaponDecorator(AbstractWeapon original)
+    public WeaponDecorator(Weapon original)
     {
         _original = original;
         

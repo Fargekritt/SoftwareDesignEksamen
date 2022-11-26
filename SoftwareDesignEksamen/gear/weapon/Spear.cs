@@ -2,7 +2,7 @@
 
 namespace SoftwareDesignEksamen.unit.unitFactory;
 
-public class Spear : AbstractWeapon
+public class Spear : Weapon
 {
     public Spear()
     {

@@ -1,6 +1,6 @@
 ﻿namespace SoftwareDesignEksamen.gear.shield;
 
-public class KiteShield : AbstractShield
+public class KiteShield : Shield
 {
     public KiteShield()
     {

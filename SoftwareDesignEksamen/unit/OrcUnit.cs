@@ -1,6 +1,6 @@
 ﻿namespace SoftwareDesignEksamen.unit;
 
-public class OrcUnit : AbstractUnit
+public class OrcUnit : Unit
 {
     public OrcUnit()
     {

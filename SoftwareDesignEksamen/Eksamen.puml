@@ -1,61 +1,75 @@
 @startuml
 'https://plantuml.com/class-diagram
-class UI{
+interface IUI{
 + FontSize
 + Color
 + clear()
 + PrintMessage(): void
 + PrintQuestion(): void
-+ PrintGameBoard(): void
 + PrintStartMenu(): void
 + PrintMultipleChoice(Title: String, List<String>): int
 + ReadString(): string
 + ReadInt(): int
 + ReadBoolean(): bool
++ PressToContinue(): void
 }
+
+class UI
+
 class GameManager{
 - Player1: Player
 - Player2: Player
-- Board: GameBoard 
 + StartGame(): void
+
+- BuildArmy(Player): void
 - PlayerInit(): void
 - ArmyInit(): void
-- GameBoardInit(): void
-- UpdateGameBoard(): void
 - Attack(Player1, Player2): void
 - Turn(): void
 - EndGame(): void
 - SaveHighscore(): void
 - Battlelog(): void
-}
-class GameBoard{
-+ Height: int
-+ Width: int
-- Board: List<List<char>> // Board[width][height]
+- PlayersAlive():
+
 }
 
 
 class Army {
+- BatteLogger: IBatteLogger
+- UnitTurn: int
 - combinedHealingPower
-- Units: List<AbstractUnit>
-+ AddUnit(AbstractUnit): void
-+ AttackedBy(AbstractUnit): void
+- Units: List<Unit>
++ AddUnit(Unit): void
++ AttackedBy(Unit): void
 + HealingTurn(): void
 + Update(): void
++ IsAlive(): bool
 - ClearDead(): void
+- Defend(): void
+- NextUnit(): Unit
+
 }
 class Player{
+- BatteLogger: IBatteLogger
+- Army: Army
+- UI: IUI
 + Name: String
 + Gold: int
 + Army: Army
-+ getNextUnit()
-+ AttackedBy(AbstractUnit)
++ AttackedBy(Unit)
++ AddUnit(): void
++ HealingTurn(): void
++ BuildArmy(): void
++ ListArmy(): void
++ Update(): void
++ IsAlive(): bool
+- ClearDead(): void
 }
 
-abstract class AbstractUnit{
-+ Weapon: AbstractWeapon
-+ Shield: AbstractShield
-+ ChestPlate: AbstractChestPlate
+abstract class Unit{
++ Weapon: Weapon
++ Shield: Shield
++ ChestPlate: ChestPlate
 + Cost: int
 + Health: int
 + MaxHealth: int
@@ -72,56 +86,71 @@ class HumanUnit
 class OrcUnit
 class ElfUnit
 abstract class UnitDecorator{
-- Original: AbstractUnit
+- Original: Unit
 }
 class DPSDecorator
 class TankDecorator
 class HealerDecorator
 
-abstract class AbstractWeapon{
+abstract class Weapon{
 + Cost: int
 + Damage: int
 + Reach: int
 + LifeSteal: int
 }
 
-abstract class AbstractWeaponDecorator
+abstract class WeaponDecorator
 class ReachDecorator
 class SharpDecorator
 class LifeStealDecorator
 
-abstract class AbstractShield
+abstract class Shield
 class KiteShield
 
-abstract class AbstractShieldDecorator
+abstract class ShieldDecorator
 
-class Sword
-class Mace
-class spear
 
-AbstractShield <-- AbstractShieldDecorator
-AbstractShield <-- KiteShield
 
-AbstractWeapon <-- AbstractWeaponDecorator
-AbstractWeapon <-- Sword
-AbstractWeapon <-- Mace
-AbstractWeapon <-- spear
+abstract class ChestPlate{
++ Cost: int
++ Armor: int
+}
 
-AbstractWeaponDecorator <-- ReachDecorator
-AbstractWeaponDecorator <-- SharpDecorator
-AbstractWeaponDecorator <-- LifeStealDecorator
+abstract class ChestPlateDecorator
+class HeavyChestPlate
+class LightChestPlate
 
+class ArmorDecorator
+
+ChestPlate <-- ChestPlateDecorator
+ChestPlate <-- HeavyChestPlate
+ChestPlate <-- LightChestPlate
+
+ChestPlateDecorator <-- ArmorDecorator
+
+Shield <-- ShieldDecorator
+Shield <-- KiteShield
+
+Weapon <-- WeaponDecorator
+Weapon <-- Sword
+Weapon <-- spear
+
+WeaponDecorator <-- ReachDecorator
+WeaponDecorator <-- SharpDecorator
+WeaponDecorator <-- LifeStealDecorator
+
+IUI <- UI
 UI -- GameManager
 GameManager o- Player
-GameManager o-- GameBoard
 Player - Army : has a Army
-Army - AbstractUnit : has many units
-AbstractWeapon --o AbstractUnit
-AbstractShield ---o AbstractUnit
-AbstractUnit <-- HumanUnit
-AbstractUnit <-- OrcUnit
-AbstractUnit <-- ElfUnit
-AbstractUnit <-- UnitDecorator
+Army - Unit : has many units
+Unit o--- Weapon
+Unit o- ChestPlate
+Shield ---o Unit
+Unit <-- HumanUnit
+Unit <-- OrcUnit
+Unit <-- ElfUnit
+Unit <-- UnitDecorator
 UnitDecorator <-- TankDecorator
 UnitDecorator <-- DPSDecorator
 UnitDecorator <-- HealerDecorator

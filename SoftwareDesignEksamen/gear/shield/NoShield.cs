@@ -1,6 +1,6 @@
 ﻿namespace SoftwareDesignEksamen.gear.shield;
 
-public class NoShield : AbstractShield
+public class NoShield : Shield
 {
     //Runs base Constructor from AbstractShield
 }

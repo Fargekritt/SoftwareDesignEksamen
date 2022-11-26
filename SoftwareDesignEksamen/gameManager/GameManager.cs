@@ -131,15 +131,7 @@ public class GameManager
         };
         player.BuildArmy(baseUnits);
     }
-
-
-    private void GameBoardInit()
-    {
-    }
-
-    private void UpdateGameBoard()
-    {
-    }
+    
 
     private void Attack(Player attacker, Player defender)
     {

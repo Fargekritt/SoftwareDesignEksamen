@@ -2,9 +2,9 @@
 
 namespace SoftwareDesignEksamen.gear.weapon.decorator;
 
-public class ReachDecorator : AbstractWeaponDecorator
+public class ReachDecorator : WeaponDecorator
 {
-    public ReachDecorator(AbstractWeapon original) : base(original)
+    public ReachDecorator(Weapon original) : base(original)
     {
         Reach = _original.Reach + 1;
         Cost = _original.Cost + 5;

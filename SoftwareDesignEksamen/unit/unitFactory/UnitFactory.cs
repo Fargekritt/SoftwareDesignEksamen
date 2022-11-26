@@ -7,7 +7,7 @@ namespace SoftwareDesignEksamen.unit.unitFactory;
 
 public class UnitFactory
 {
-    public AbstractUnit CreateUnit(UnitEnum unit)
+    public Unit CreateUnit(UnitEnum unit)
     {
         switch (unit)
         {
@@ -52,7 +52,7 @@ public class UnitFactory
     }
 
 
-    public AbstractWeapon CreateWeapon(WeaponEnum weapon)
+    public Weapon CreateWeapon(WeaponEnum weapon)
     {
         switch (weapon)
         {
@@ -67,7 +67,7 @@ public class UnitFactory
         return new NoSword();
     }
 
-    public AbstractShield CreateShield(ShieldEnum shield)
+    public Shield CreateShield(ShieldEnum shield)
     {
         switch (shield)
         {

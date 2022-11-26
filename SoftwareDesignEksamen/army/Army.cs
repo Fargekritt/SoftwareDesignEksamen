@@ -14,7 +14,7 @@ public class Army
     #endregion
 
     #region Properties
-    public List<AbstractUnit> Units { get; set; } = new List<AbstractUnit>();
+    public List<Unit> Units { get; set; } = new List<Unit>();
     
     #endregion
 
@@ -22,7 +22,7 @@ public class Army
     /// Add a Unit to the army. if the unit has healing the army combinedHealingPower will also increase
     /// </summary>
     /// <param name="unit">Unit to be added to Army</param>
-    public void AddUnit(AbstractUnit unit)
+    public void AddUnit(Unit unit)
     {
         _combinedHealingPower += unit.Healing;
         Units.Add(unit);
@@ -41,7 +41,7 @@ public class Army
     /// <c>NextUnit</c> returns the next unit from the army.
     /// </summary>
     /// <returns>AbstractUnit</returns>
-    private AbstractUnit NextUnit()
+    private Unit NextUnit()
     {
 
         if (_unitTurn > Units.Count - 1)
@@ -63,7 +63,7 @@ public class Army
     /// The actually attack from one unit
     /// </summary>
     /// <param name="attackerUnit">Unit to attack the army</param>
-    private void Defend(AbstractUnit attackerUnit)
+    private void Defend(Unit attackerUnit)
     {
         var damageDealt = 0;
         var damage = attackerUnit.Damage;

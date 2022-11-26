@@ -5,11 +5,11 @@ using SoftwareDesignEksamen.weapon;
 
 namespace SoftwareDesignEksamen.unit;
 
-public abstract class AbstractUnit
+public abstract class Unit
 {
-    public AbstractWeapon Weapon { get; set; } = new NoSword();
-    public AbstractShield Shield { get; set; } = new NoShield();
-    public AbstractChestPlate ChestPlate { get; set; } = new NoChestPlate();
+    public Weapon Weapon { get; set; } = new NoSword();
+    public Shield Shield { get; set; } = new NoShield();
+    public ChestPlate ChestPlate { get; set; } = new NoChestPlate();
     
 
     private readonly int _maxHealth;
